@@ -17,7 +17,7 @@ const MobileProfileCard: React.FC<Props> = () => {
             src={CONFIG.profile.image}
             width={90}
             height={90}
-            css={{ position: "relative" }}
+            css={{ position: "relative", borderRadius: "70%" }}
             alt="profile_image"
           />
           <div className="wrapper">
@@ -52,7 +52,7 @@ const StyledWrapper = styled.div`
       theme.scheme === "light" ? "white" : theme.colors.gray4};
     > .wrapper {
       display: flex;
-      gap: 0.5rem;
+      gap: 1rem;
       align-items: center;
       > .wrapper {
         height: fit-content;
