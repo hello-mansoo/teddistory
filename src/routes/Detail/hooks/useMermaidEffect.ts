@@ -15,9 +15,9 @@ const useMermaidEffect = () => {
       mermaid.render(
         "mermaid" + i,
         elements[i].textContent || "",
-        (svgCode: string) => {
-          elements[i].innerHTML = svgCode
-        }
+        // (svgCode: string) => {
+        //   elements[i].innerHTML = svgCode
+        // }
       )
     }
   }, [])
