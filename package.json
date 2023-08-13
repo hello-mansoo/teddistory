@@ -1,11 +1,8 @@
 {
-  "name": "morethan-log",
+  "name": "teddistory",
   "version": "1.3.0",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/morethanmin/morethan-log.git"
-  },
+  "repository": "https://github.com/TwoShot22/teddistory",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -43,5 +40,8 @@
     "postcss": "^8.3.11",
     "prettier": "^2.7.1",
     "typescript": "^4.9.4"
-  }
+  },
+  "description": "teddy's tech blog",
+  "main": "/pages/index.tsx",
+  "author": "TwoShot22 <mansoo0621@naver.com>"
 }
