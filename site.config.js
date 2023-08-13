@@ -10,12 +10,13 @@ const CONFIG = {
     github: "TwoShot22",
     instagram: "man_s000",
   },
-  projects: [
-    {
-      name: `teddistory`,
-      href: "https://github.com/TwoShot22/teddistory",
-    },
-  ],
+  // projects: [
+  //   {
+  //     name: `teddistory`,
+  //     href: "https://github.com/TwoShot22/teddistory",
+  //   },
+  // ],
+  projects: undefined,
   // blog setting (required)
   blog: {
     title: "teddistory",
