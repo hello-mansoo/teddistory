@@ -48,10 +48,15 @@ const StyledWrapper = styled.div`
     .top {
       position: relative;
       width: 100%;
+      margin-bottom: 10px;
       &:after {
         content: "";
         display: block;
         padding-bottom: 100%;
+      }
+
+      > img {
+        border-radius: 70%;
       }
     }
     .mid {
