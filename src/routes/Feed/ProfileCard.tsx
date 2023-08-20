@@ -10,7 +10,7 @@ const ProfileCard: React.FC<Props> = () => {
   return (
     <StyledWrapper>
       <div className="title">
-        <Emoji>💻</Emoji> Profile
+        <span style={{ marginRight: '0.3rem' }}>🧸</span> Profile
       </div>
       <div className="content">
         <div className="top">

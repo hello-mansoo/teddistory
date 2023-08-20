@@ -20,6 +20,7 @@ const CONFIG = {
   // blog setting (required)
   blog: {
     title: "Teddistory | 김테디의 기술 블로그",
+    header: "<Teddistory />",
     description: "개발부터 DevRel까지 제가 걸어가는 길을 기록합니다",
   },
 
@@ -27,7 +28,7 @@ const CONFIG = {
   link: "https://blog.teddy-kim.com/",
   since: 2023, // If leave this empty, current year will be used.
   lang: "ko-KR", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES', 'ko-KR']
-  ogImageGenerateURL: "https://og-image-korean.vercel.app", // The link to generate OG image, don't end with a slash
+  ogImageGenerateURL: "/og_image.png", // The link to generate OG image, don't end with a slash
 
   // notion configuration (required)
   notionConfig: {
@@ -48,7 +49,7 @@ const CONFIG = {
     },
   },
   utterances: {
-    enable: false,
+    enable: true,
     config: {
       repo: process.env.NEXT_PUBLIC_UTTERANCES_REPO || "",
       "issue-term": "og:title",
