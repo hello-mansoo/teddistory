@@ -8,7 +8,7 @@ const SearchInput: React.FC<Props> = ({ ...props }) => {
   return (
     <StyledWrapper>
       <div className="top">
-        <Emoji>🔎</Emoji> Search
+        <span style={{ marginRight: '0.3rem' }}>🔎</span> Search
       </div>
       <input
         className="mid"

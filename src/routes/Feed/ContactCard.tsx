@@ -11,7 +11,7 @@ import styled from "@emotion/styled"
 const ContactCard: React.FC = () => {
   return (
     <>
-      <StyledTitle>💬 Contact</StyledTitle>
+      <StyledTitle><span style={{ marginRight: '0.3rem' }}>💬</span> Contact</StyledTitle>
       <StyledWrapper>
         {CONFIG.profile.linkedin && (
           <a
