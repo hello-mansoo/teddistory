@@ -73,7 +73,7 @@ const StyledWrapper = styled.div`
     font-weight: 700;
   }
   nav {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     color: ${({ theme }) => theme.colors.gray11};
     > .top {
       display: flex;
