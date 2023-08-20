@@ -39,8 +39,11 @@ const StyledWrapper = styled.div`
     align-items: center;
     width: 100%;
     max-width: 1120px;
-    height: 3rem;
+    height: 3.5rem;
     margin: 0 auto;
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+
     &[data-full-width="true"] {
       @media (min-width: 768px) {
         padding-left: 6rem;
