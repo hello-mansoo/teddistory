@@ -19,6 +19,7 @@ const MetaConfig: React.FC<MetaConfigProps> = (props) => {
       <meta name="description" content={props.description} />
       {/* og */}
       <meta property="og:type" content={props.type} />
+      <meta property="og:site_name" content={props.title} />
       <meta property="og:title" content={props.title} />
       <meta property="og:description" content={props.description} />
       <meta property="og:url" content={props.url} />
