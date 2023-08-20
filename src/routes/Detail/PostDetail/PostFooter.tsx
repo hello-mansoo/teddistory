@@ -22,6 +22,8 @@ const StyledWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   font-weight: 500;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
   color: ${({ theme }) => theme.colors.gray10};
   a {
     margin-top: 0.5rem;
