@@ -120,5 +120,16 @@ const StyledWrapper = styled.div`
   }
   .notion-page {
     padding: 0;
+
+    .notion-list{
+      li {
+        padding: 2px 0;
+      }
+    }
+
+    .notion-quote {
+      font-size: initial;
+      margin: 0;
+    }
   }
 `
