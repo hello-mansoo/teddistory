@@ -44,7 +44,7 @@ const PostDetail: React.FC<Props> = () => {
 export default PostDetail
 
 const StyledWrapper = styled.div`
-  padding: 2rem;
+  padding: 4rem 2rem;
   border-radius: 1.5rem;
   max-width: 56rem;
   background-color: ${({ theme }) =>
@@ -52,6 +52,11 @@ const StyledWrapper = styled.div`
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   margin: 0 auto;
+  
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
+
   > article {
     margin: 0 auto;
     max-width: 42rem;
