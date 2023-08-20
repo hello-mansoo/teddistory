@@ -20,6 +20,7 @@ const CONFIG = {
   // blog setting (required)
   blog: {
     title: "Teddistory | 김테디의 기술 블로그",
+    header: "<Teddistory />",
     description: "개발부터 DevRel까지 제가 걸어가는 길을 기록합니다",
   },
 
