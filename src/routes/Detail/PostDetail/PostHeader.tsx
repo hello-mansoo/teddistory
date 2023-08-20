@@ -77,7 +77,7 @@ const StyledWrapper = styled.div`
     color: ${({ theme }) => theme.colors.gray11};
     > .top {
       display: flex;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
       gap: 0.75rem;
       align-items: center;
       .author {
@@ -102,7 +102,7 @@ const StyledWrapper = styled.div`
     }
     > .mid {
       display: flex;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       align-items: center;
       .tags {
         display: flex;

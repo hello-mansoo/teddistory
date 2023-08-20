@@ -20,7 +20,7 @@ const PostDetail: React.FC<Props> = () => {
     <StyledWrapper>
       <article>
         {category && (
-          <div css={{ marginBottom: "0.5rem" }}>
+          <div css={{ marginBottom: "1rem" }}>
             <Category readOnly={data.status?.[0] === "PublicOnDetail"}>
               {category}
             </Category>
