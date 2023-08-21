@@ -46,7 +46,7 @@ const Utterances: React.FC<Props> = ({ issueTerm }) => {
 export default Utterances
 
 const StyledWrapper = styled.div`
-  .utterances-frame {
+  > .utterances-frame {
     display: none;
   }
 
