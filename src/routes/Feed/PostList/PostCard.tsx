@@ -145,7 +145,7 @@ const StyledWrapper = styled(Link)`
         margin-bottom: 1rem;
         p {
           display: none;
-          line-height: 2rem;
+          line-height: 1.6rem;
           color: ${({ theme }) => theme.colors.gray11};
 
           @media (min-width: 768px) {
