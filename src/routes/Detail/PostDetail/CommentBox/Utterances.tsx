@@ -46,6 +46,10 @@ const Utterances: React.FC<Props> = ({ issueTerm }) => {
 export default Utterances
 
 const StyledWrapper = styled.div`
+  > .utterances-frame {
+    display: none;
+  }
+
   @media (min-width: 768px) {
     margin-left: -4rem;
   }
