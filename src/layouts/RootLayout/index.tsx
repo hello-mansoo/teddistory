@@ -5,6 +5,7 @@ import Header from "./Header"
 import styled from "@emotion/styled"
 import Scripts from "src/layouts/RootLayout/Scripts"
 import useGtagEffect from "./useGtagEffect"
+import { CONFIG } from "site.config"
 
 type Props = {
   children: ReactNode
@@ -15,7 +16,7 @@ const RootLayout = ({ children }: Props) => {
   useGtagEffect()
   return (
     <ThemeProvider scheme={scheme}>
-      <Scripts />
+      {CONFIG.isProd && <Scripts />}
       {/* // TODO: replace react query */}
       {/* {metaConfig.type !== "Paper" && <Header />} */}
       <Header fullWidth={false} />
