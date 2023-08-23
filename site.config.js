@@ -70,5 +70,5 @@ const CONFIG = {
 module.exports = { CONFIG }
 
 function isProd() {
-  return process.env.VERCEL_ENV === "Production"
+  return process.env.NEXT_PUBLIC_RUN_MODE === "Production"
 }
