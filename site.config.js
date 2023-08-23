@@ -20,12 +20,12 @@ const CONFIG = {
   // blog setting (required)
   blog: {
     title: "Teddistory | 김테디의 기술 블로그",
-    header: this.isProd ? "<Teddistory />" : "<Teddistory dev />",
+    header: isProd() ? "<Teddistory />" : "<Teddistory dev />",
     description: "개발부터 DevRel, 일상 이야기까지 때로는 기술적으로, 때로는 감성적으로 김테디의 모든 순간을 기록하고 아카이빙합니다",
   },
 
   // CONFIG configration (required)
-  link: this.isProd ? "https://blog.teddy-kim.com" : "https://dev-blog.teddy-kim.com",
+  link: isProd() ? "https://blog.teddy-kim.com" : "https://dev-blog.teddy-kim.com",
   since: 2023, // If leave this empty, current year will be used.
   lang: "ko-KR", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES', 'ko-KR']
   ogImageGenerateURL: "/og_image.png", // The link to generate OG image, don't end with a slash
@@ -63,8 +63,12 @@ const CONFIG = {
       appid: "", // Embed Code -> data-app-id value
     },
   },
-  isProd: process.env.VERCEL_ENV === "production", // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
+  isProd: isProd(), // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
   revalidateTime: 21600 * 7, // revalidate time for [slug], index
 }
 
 module.exports = { CONFIG }
+
+function isProd() {
+  return process.env.VERCEL_ENV === "production"
+}
