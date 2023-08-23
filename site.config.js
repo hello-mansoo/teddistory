@@ -21,7 +21,7 @@ const CONFIG = {
   blog: {
     title: "Teddistory | 김테디의 기술 블로그",
     header: "<Teddistory />",
-    description: "개발부터 DevRel까지 제가 걸어가는 길을 기록합니다",
+    description: "개발부터 DevRel, 일상 이야기까지 때로는 기술적으로, 때로는 감성적으로 김테디의 모든 순간을 기록하고 아카이빙합니다",
   },
 
   // CONFIG configration (required)
