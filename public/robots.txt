@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://teddistory.vercel.app/
+Host: https://dev-blog.teddy-kim.com/
 
 # Sitemaps
-Sitemap: https://teddistory.vercel.app/sitemap.xml
+Sitemap: https://dev-blog.teddy-kim.com/sitemap.xml
