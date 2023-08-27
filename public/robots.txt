@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://dev-blog.teddy-kim.com/
+Host: https://blog.teddy-kim.com/
 
 # Sitemaps
-Sitemap: https://dev-blog.teddy-kim.com/sitemap.xml
+Sitemap: https://blog.teddy-kim.com/sitemap.xml
