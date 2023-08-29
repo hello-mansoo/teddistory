@@ -19,12 +19,15 @@ const Scripts: React.FC = () => (
       </>
     )}
     {CONFIG.jenniferFront?.enable === true && (
-      <Script strategy="lazyOnload" id="jenniferFront">
-      {`(function(j,ennifer) {
-          j['dmndata']=[];j['jenniferFront']=function(args){window.dmndata.push(args)};
-          j['dmnaid']=ennifer;j['dmnatime']=new Date();j['dmnanocookie']=false;j['dmnajennifer']='JENNIFER_FRONT@INTG';
-        }(window, '${CONFIG.jenniferFront.config.id}'));`}
-    </Script>
+      <>
+        <Script strategy="lazyOnload" id="jenniferFront">
+        {`(function(j,ennifer) {
+            j['dmndata']=[];j['jenniferFront']=function(args){window.dmndata.push(args)};
+            j['dmnaid']=ennifer;j['dmnatime']=new Date();j['dmnanocookie']=false;j['dmnajennifer']='JENNIFER_FRONT@INTG';
+          }(window, '${CONFIG.jenniferFront.config.id}'));`}
+        </Script>
+        <Script strategy="lazyOnload" src={`https://d-collect.jennifersoft.com/${CONFIG.jenniferFront.config.id}/demian.js`} />
+      </>      
     )}
   </>
 )
