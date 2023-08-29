@@ -12,7 +12,7 @@ const useScheme = (): [Scheme, SetScheme] => {
   const { data } = useQuery({
     queryKey: queryKey.scheme(),
     enabled: false,
-    initialData: "light",
+    initialData: "dark",
   })
 
   const scheme = data === "light" ? "light" : "dark"
