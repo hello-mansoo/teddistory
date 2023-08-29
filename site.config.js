@@ -54,6 +54,12 @@ const CONFIG = {
       siteVerification: process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION || "",
     },
   },
+  jenniferFront: {
+    enable: true,
+    config: {
+      id: process.env.NEXT_PUBLIC_JENNIFER_FRONT_ID || "",
+    }
+  },
   utterances: {
     enable: true,
     config: {
