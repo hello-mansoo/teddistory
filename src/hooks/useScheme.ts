@@ -12,7 +12,7 @@ const useScheme = (): [Scheme, SetScheme] => {
   const { data } = useQuery({
     queryKey: queryKey.scheme(),
     enabled: false,
-    initialData: "light",
+    initialData: "dark",
   })
 
   const scheme = data === "light" ? "light" : "dark"
@@ -26,7 +26,7 @@ const useScheme = (): [Scheme, SetScheme] => {
   useEffect(() => {
     if (!window) return
 
-    const scheme = getCookie("scheme")
+    const scheme = getCookie("scheme") ?? getPreferColorScheme()
     setScheme(scheme === "light" ? "light" : "dark")
   }, [])
 
@@ -34,3 +34,7 @@ const useScheme = (): [Scheme, SetScheme] => {
 }
 
 export default useScheme
+
+function getPreferColorScheme() {
+  return window.matchMedia("(prefers-color-scheme: dark").matches ? "dark" : "light"
+}

@@ -18,6 +18,20 @@ const Scripts: React.FC = () => (
         </Script>
       </>
     )}
+    {CONFIG.jenniferFront?.enable === true && (
+      <Script
+      id="jenniferFront"
+      strategy="lazyOnload"
+      dangerouslySetInnerHTML={{
+        __html: `
+        (function(j,ennifer) {
+          j['dmndata']=[];j['jenniferFront']=function(args){window.dmndata.push(args)};
+          j['dmnaid']=ennifer;j['dmnatime']=new Date();j['dmnanocookie']=false;j['dmnajennifer']='JENNIFER_FRONT@INTG';
+        }(window, '${CONFIG.jenniferFront.config.id}'));
+      `,
+      }}
+    ></Script>
+    )}
   </>
 )
 
