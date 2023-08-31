@@ -4,6 +4,7 @@ import { Noto_Color_Emoji } from "next/font/google"
 const notoColorEmoji = Noto_Color_Emoji({
   weight: ["400"],
   subsets: ["emoji"],
+  preload: true,
 })
 
 type Props = {
@@ -13,7 +14,7 @@ type Props = {
 
 export const Emoji = ({ className, children }: Props) => {
   return (
-    <span className={notoColorEmoji.className}>
+    <span className={className}>
       {children}
     </span>
   )
