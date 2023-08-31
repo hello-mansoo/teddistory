@@ -25,8 +25,11 @@ const StyledWrapper = styled.div`
     flex-direction: row;
     li {
       display: block;
-      margin-left: 1rem;
       color: ${({ theme }) => theme.colors.gray11};
+
+      &:not(:last-child) {
+        margin-left: 1rem;
+      }
     }
   }
 `
