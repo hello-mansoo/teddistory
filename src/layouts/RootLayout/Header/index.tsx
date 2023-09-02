@@ -41,8 +41,8 @@ const StyledWrapper = styled.div`
     max-width: 1120px;
     height: 3.5rem;
     margin: 0 auto;
-    -webkit-backdrop-filter: blur(50px);
-    backdrop-filter: blur(50px);
+    // -webkit-backdrop-filter: blur(50px);
+    // backdrop-filter: blur(50px);
 
     &[data-full-width="true"] {
       @media (min-width: 768px) {
