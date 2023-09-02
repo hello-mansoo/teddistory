@@ -121,6 +121,14 @@ const StyledWrapper = styled.div`
   .notion-page {
     padding: 0;
 
+    .notion-code {
+      &.language-markdown {
+        code {
+          white-space: pre-wrap;
+        }
+      }
+    }
+
     .notion-list{
       li {
         padding: 2px 0;
