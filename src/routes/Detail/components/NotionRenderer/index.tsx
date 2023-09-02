@@ -126,6 +126,10 @@ const StyledWrapper = styled.div`
         code {
           white-space: pre-wrap;
         }
+
+        .notion-code-copy {
+          display: none;
+        }
       }
     }
 
