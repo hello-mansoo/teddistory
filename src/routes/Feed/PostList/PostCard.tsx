@@ -144,12 +144,13 @@ const StyledWrapper = styled(Link)`
       > .summary {
         margin-bottom: 1rem;
         p {
-          display: none;
+          display: block;
           line-height: 1.6rem;
           color: ${({ theme }) => theme.colors.gray11};
 
-          @media (min-width: 768px) {
-            display: block;
+          @media (max-width: 767px) {
+            font-size: 0.8rem;
+            line-height: 1.2rem;
           }
         }
       }
