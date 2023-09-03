@@ -121,7 +121,28 @@ const StyledWrapper = styled.div`
   .notion-page {
     padding: 0;
 
-    .notion-list{
+    .notion-row {
+      .notion-column {
+        // @media (max-width: 767px) {
+          padding-top: 3px;
+          padding-bottom: 3px;
+        // }
+      }
+    }
+
+    .notion-code {
+      &.language-markdown {
+        code {
+          white-space: pre-wrap;
+        }
+
+        .notion-code-copy {
+          display: none;
+        }
+      }
+    }
+
+    .notion-list {
       li {
         padding: 2px 0;
       }
@@ -129,7 +150,13 @@ const StyledWrapper = styled.div`
 
     .notion-quote {
       font-size: initial;
-      margin: 0;
+      margin: 3px 0;
+    }
+
+    .notion-asset-wrapper {
+      // @media (max-width: 767px) {
+        margin: 0;
+      // }
     }
   }
 `
