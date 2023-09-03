@@ -18,7 +18,7 @@ import styled from "@emotion/styled"
 
 const _NotionRenderer = dynamic(
   () => import("react-notion-x").then((m) => m.NotionRenderer),
-  { ssr: true }
+  { ssr: false }
 )
 
 const Code = dynamic(() =>
