@@ -158,5 +158,12 @@ const StyledWrapper = styled.div`
         margin: 0;
       // }
     }
+
+    .notion-table-of-contents-item-body {
+      display: block!important;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
 `
