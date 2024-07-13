@@ -10,15 +10,20 @@ const ProfileCard: React.FC<Props> = () => {
   return (
     <StyledWrapper>
       <div className="title">
-        <span style={{ marginRight: '0.3rem' }}>🧸</span> Profile
+        <span style={{ marginRight: "0.3rem" }}>🧸</span> Profile
       </div>
       <div className="content">
         <div className="top">
           <Image src={CONFIG.profile.image} fill alt="" />
         </div>
         <div className="mid">
-          <div className=" name">{CONFIG.profile.name}</div>
-          <div className="role">{CONFIG.profile.role}</div>
+          <div className="name">{CONFIG.profile.name}</div>
+          <div className="role-container">
+            <div className="role">{CONFIG.profile.role}</div>
+            {CONFIG.profile.subRole && (
+              <div className="sub-role">{CONFIG.profile.subRole}</div>
+            )}
+          </div>
           <div className="text-sm mb-2">{CONFIG.profile.bio}</div>
         </div>
       </div>
@@ -70,11 +75,20 @@ const StyledWrapper = styled.div`
         font-style: italic;
         font-weight: 700;
       }
-      .role {
+      .role-container {
         margin-bottom: 1rem;
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-        color: ${({ theme }) => theme.colors.gray11};
+
+        .role {
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+          color: ${({ theme }) => theme.colors.gray11};
+          text-align: center;
+        }
+        .sub-role {
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+          color: ${({ theme }) => theme.colors.gray11};
+        }
       }
       .bio {
         margin-bottom: 0.5rem;
