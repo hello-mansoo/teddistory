@@ -88,6 +88,7 @@ const StyledWrapper = styled.div`
           font-size: 0.875rem;
           line-height: 1.25rem;
           color: ${({ theme }) => theme.colors.gray11};
+          text-align: center;
         }
       }
       .bio {
