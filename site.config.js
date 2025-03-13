@@ -3,8 +3,8 @@ const CONFIG = {
   profile: {
     name: "Mansoo Kim",
     image: "/profile.jpg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
-    role: "Machine Learning Engineer",
-    subRole: "(ex-Front-end Developer)",
+    role: "Software Engineer, AI Agent",
+    subRole: "(ex-Developer Advocate)",
     bio: "Everyday Happy Coding",
     email: "contact@teddy-kim.com",
     linkedin: "mansoo-teddy-kim",
