@@ -6,7 +6,7 @@ import { useTagsQuery } from "src/hooks/useTagsQuery"
 
 type Props = {}
 
-const TagList: React.FC<Props> = () => {
+const TagList = () => {
   const router = useRouter()
   const currentTag = router.query.tag || undefined
   const data = useTagsQuery()

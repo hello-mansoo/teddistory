@@ -16,9 +16,8 @@ import "katex/dist/katex.min.css"
 import { FC } from "react"
 import styled from "@emotion/styled"
 
-const _NotionRenderer = dynamic(
-  () => import("react-notion-x").then((m) => m.NotionRenderer),
-  { ssr: false }
+const _NotionRenderer = dynamic(() =>
+  import("react-notion-x").then((m) => m.NotionRenderer)
 )
 
 const Code = dynamic(() =>
@@ -68,12 +67,7 @@ const Collection = dynamic(() =>
 const Equation = dynamic(() =>
   import("react-notion-x/build/third-party/equation").then((m) => m.Equation)
 )
-const Pdf = dynamic(
-  () => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf),
-  {
-    ssr: false,
-  }
-)
+const Pdf = dynamic(() => import("./noSSRPdf"), { ssr: false })
 const Modal = dynamic(
   () => import("react-notion-x/build/third-party/modal").then((m) => m.Modal),
   {

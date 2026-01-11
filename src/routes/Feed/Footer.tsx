@@ -10,7 +10,7 @@ type Props = {
   className?: string
 }
 
-const Footer: React.FC<Props> = ({ className }) => {
+const Footer = ({ className }: Props) => {
   return (
     <StyledWrapper className={className}>
       <a

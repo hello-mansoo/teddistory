@@ -6,7 +6,7 @@ type TOrder = "asc" | "desc"
 
 type Props = {}
 
-const OrderButtons: React.FC<Props> = () => {
+const OrderButtons = () => {
   const router = useRouter()
 
   const currentOrder = `${router.query.order || ``}` || ("desc" as TOrder)

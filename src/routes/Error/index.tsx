@@ -4,7 +4,7 @@ import { Emoji } from "src/components/Emoji"
 
 type Props = {}
 
-const CustomError: React.FC<Props> = () => {
+const CustomError = () => {
   return (
     <StyledWrapper>
       <div className="wrapper">

@@ -10,7 +10,7 @@ type Props = {
   issueTerm: string
 }
 
-const Utterances: React.FC<Props> = ({ issueTerm }) => {
+const Utterances = ({ issueTerm }: Props) => {
   const [scheme] = useScheme()
   const router = useRouter()
 

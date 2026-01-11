@@ -8,7 +8,7 @@ type Props = {
   q: string
 }
 
-const PostList: React.FC<Props> = ({ q }) => {
+const PostList = ({ q }: Props) => {
   const router = useRouter()
   const data = usePostsQuery()
   const [filteredPosts, setFilteredPosts] = useState(data)

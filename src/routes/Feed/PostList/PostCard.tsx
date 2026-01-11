@@ -11,7 +11,7 @@ type Props = {
   data: TPost
 }
 
-const PostCard: React.FC<Props> = ({ data }) => {
+const PostCard = ({ data }: Props) => {
   const category = (data.category && data.category?.[0]) || undefined
 
   return (

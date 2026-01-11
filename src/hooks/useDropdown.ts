@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 
 type useDropdownType = () => [
-  React.RefObject<HTMLDivElement>,
+  React.RefObject<HTMLDivElement | null>,
   boolean,
   () => void
 ]

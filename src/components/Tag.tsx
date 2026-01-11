@@ -6,7 +6,7 @@ type Props = {
   children: string
 }
 
-const Tag: React.FC<Props> = ({ children }) => {
+const Tag = ({ children }: Props) => {
   const router = useRouter()
 
   const handleClick = (value: string) => {

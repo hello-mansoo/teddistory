@@ -10,7 +10,7 @@ type Props = {
   data: TPost
 }
 
-const PostHeader: React.FC<Props> = ({ data }) => {
+const PostHeader = ({ data }: Props) => {
   return (
     <StyledWrapper>
       <h1 className="title">{data.title}</h1>

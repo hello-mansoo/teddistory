@@ -4,7 +4,7 @@ import NotionRenderer from "../components/NotionRenderer"
 import usePostQuery from "src/hooks/usePostQuery"
 type Props = {}
 
-const PageDetail: React.FC<Props> = () => {
+const PageDetail = () => {
   const data = usePostQuery()
 
   if (!data) return null

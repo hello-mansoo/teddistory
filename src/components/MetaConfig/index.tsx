@@ -10,7 +10,7 @@ export type MetaConfigProps = {
   url: string
 }
 
-const MetaConfig: React.FC<MetaConfigProps> = (props) => {
+const MetaConfig = (props: MetaConfigProps) => {
   return (
     <Head>
       <title>{props.title}</title>

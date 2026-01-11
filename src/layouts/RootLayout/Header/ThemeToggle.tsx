@@ -5,7 +5,7 @@ import useScheme from "src/hooks/useScheme"
 
 type Props = {}
 
-const ThemeToggle: React.FC<Props> = () => {
+const ThemeToggle = () => {
   const [scheme, setScheme] = useScheme()
 
   const handleClick = () => {
