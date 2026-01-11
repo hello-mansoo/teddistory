@@ -6,7 +6,7 @@ import { Emoji } from "src/components/Emoji"
 
 type Props = {}
 
-const ProfileCard: React.FC<Props> = () => {
+const ProfileCard = () => {
   return (
     <StyledWrapper>
       <div className="title">

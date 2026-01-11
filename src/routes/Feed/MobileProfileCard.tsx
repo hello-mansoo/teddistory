@@ -7,7 +7,7 @@ type Props = {
   className?: string
 }
 
-const MobileProfileCard: React.FC<Props> = () => {
+const MobileProfileCard = () => {
   return (
     <StyledWrapper>
       <div className="top"><span style={{ marginRight: '0.3rem' }}>🧸</span> Profile</div>

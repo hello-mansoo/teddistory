@@ -19,7 +19,7 @@ type Props = {
   data: TPost
 }
 
-const CommentBox: React.FC<Props> = ({ data }) => {
+const CommentBox = ({ data }: Props) => {
   return (
     <div>
       {CONFIG.utterances.enable && <UtterancesComponent issueTerm={data.id} />}

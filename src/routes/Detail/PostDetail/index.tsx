@@ -9,7 +9,7 @@ import usePostQuery from "src/hooks/usePostQuery"
 
 type Props = {}
 
-const PostDetail: React.FC<Props> = () => {
+const PostDetail = () => {
   const data = usePostQuery()
 
   if (!data) return null

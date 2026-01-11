@@ -11,7 +11,7 @@ type Props = {
   title: string
 }
 
-const Cusdis: React.FC<Props> = ({ id, slug, title }) => {
+const Cusdis = ({ id, slug, title }: Props) => {
   const [value, setValue] = useState(0)
   const [scheme] = useScheme()
 

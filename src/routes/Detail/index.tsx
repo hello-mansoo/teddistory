@@ -6,7 +6,7 @@ import usePostQuery from "src/hooks/usePostQuery"
 
 type Props = {}
 
-const Detail: React.FC<Props> = () => {
+const Detail = () => {
   const data = usePostQuery()
   useMermaidEffect()
 

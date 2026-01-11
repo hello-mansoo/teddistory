@@ -1,4 +1,4 @@
-import Detail from "src/routes/Detail"
+import dynamic from "next/dynamic"
 import { filterPosts } from "src/libs/utils/notion"
 import { CONFIG } from "site.config"
 import { NextPageWithLayout } from "../types"
@@ -11,6 +11,9 @@ import { queryKey } from "src/constants/queryKey"
 import { dehydrate } from "@tanstack/react-query"
 import usePostQuery from "src/hooks/usePostQuery"
 import { FilterPostsOptions } from "src/libs/utils/notion/filterPosts"
+
+// Dynamically import Detail with ssr: false to avoid SSR of react-notion-x
+const Detail = dynamic(() => import("src/routes/Detail"), { ssr: false })
 
 const filter: FilterPostsOptions = {
   acceptStatus: ["Public", "PublicOnDetail"],
@@ -36,6 +39,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const detailPosts = filterPosts(posts, filter)
   const postDetail = detailPosts.find((t: any) => t.slug === slug)
+
+  if (!postDetail) {
+    return {
+      notFound: true,
+    }
+  }
+
+  // Fetch recordMap for the detail page
   const recordMap = await getRecordMap(postDetail?.id!)
 
   await queryClient.prefetchQuery(queryKey.post(`${slug}`), () => ({
@@ -46,6 +57,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
+      slug,
     },
     revalidate: CONFIG.revalidateTime,
   }

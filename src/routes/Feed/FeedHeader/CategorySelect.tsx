@@ -8,7 +8,7 @@ import { useCategoriesQuery } from "src/hooks/useCategoriesQuery"
 
 type Props = {}
 
-const CategorySelect: React.FC<Props> = () => {
+const CategorySelect = () => {
   const router = useRouter()
   const data = useCategoriesQuery()
   const [dropdownRef, opened, handleOpen] = useDropdown()

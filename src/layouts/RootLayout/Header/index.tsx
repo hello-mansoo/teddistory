@@ -8,7 +8,7 @@ type Props = {
   fullWidth: boolean
 }
 
-const Header: React.FC<Props> = ({ fullWidth }) => {
+const Header = ({ fullWidth }: Props) => {
   return (
     <StyledWrapper>
       <div data-full-width={fullWidth} className="container">

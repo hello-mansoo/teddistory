@@ -4,7 +4,7 @@ import React from "react"
 
 type Props = {}
 
-const Footer: React.FC<Props> = () => {
+const Footer = () => {
   const router = useRouter()
   return (
     <StyledWrapper>

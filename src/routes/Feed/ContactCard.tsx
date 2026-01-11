@@ -8,7 +8,7 @@ import {
 } from "react-icons/ai"
 import styled from "@emotion/styled"
 
-const ContactCard: React.FC = () => {
+const ContactCard = () => {
   return (
     <>
       <StyledTitle><span style={{ marginRight: '0.3rem' }}>💬</span> Contact</StyledTitle>

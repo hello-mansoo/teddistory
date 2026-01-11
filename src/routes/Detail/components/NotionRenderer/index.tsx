@@ -13,8 +13,18 @@ import "prismjs/themes/prism-tomorrow.css"
 // used for rendering equations (optional)
 
 import "katex/dist/katex.min.css"
-import { FC } from "react"
+import { FC, ComponentProps } from "react"
 import styled from "@emotion/styled"
+
+// Wrapper for Next.js Image to add sizes prop for react-notion-x
+const NotionImage = (props: ComponentProps<typeof Image>) => {
+  return (
+    <Image
+      {...props}
+      sizes={props.sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"}
+    />
+  )
+}
 
 const _NotionRenderer = dynamic(
   () => import("react-notion-x").then((m) => m.NotionRenderer),
@@ -68,12 +78,7 @@ const Collection = dynamic(() =>
 const Equation = dynamic(() =>
   import("react-notion-x/build/third-party/equation").then((m) => m.Equation)
 )
-const Pdf = dynamic(
-  () => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf),
-  {
-    ssr: false,
-  }
-)
+const Pdf = dynamic(() => import("./noSSRPdf"), { ssr: false })
 const Modal = dynamic(
   () => import("react-notion-x/build/third-party/modal").then((m) => m.Modal),
   {
@@ -102,7 +107,7 @@ const NotionRenderer: FC<Props> = ({ recordMap }) => {
           Equation,
           Modal,
           Pdf,
-          nextImage: Image,
+          nextImage: NotionImage,
           nextLink: Link,
         }}
         mapPageUrl={mapPageUrl}

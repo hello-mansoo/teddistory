@@ -9,7 +9,7 @@ type ProjectType = {
   href: string 
 }
 
-const ServiceCard: React.FC = () => {
+const ServiceCard = () => {
   if (!CONFIG.projects) return null
 
   const projects: ProjectType[] = CONFIG.projects ?? []

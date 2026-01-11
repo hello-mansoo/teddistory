@@ -15,7 +15,7 @@ const HEADER_HEIGHT = 73
 
 type Props = {}
 
-const Feed: React.FC<Props> = () => {
+const Feed = () => {
   const [q, setQ] = useState("")
 
   return (

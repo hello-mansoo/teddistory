@@ -22,7 +22,7 @@ type Props = {
   readOnly?: boolean
 }
 
-const Category: React.FC<Props> = ({ readOnly = false, children }) => {
+const Category = ({ readOnly = false, children }: Props) => {
   const router = useRouter()
 
   const handleClick = (value: string) => {
