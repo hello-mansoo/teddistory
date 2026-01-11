@@ -11,9 +11,7 @@ import { queryKey } from "src/constants/queryKey"
 import { dehydrate } from "@tanstack/react-query"
 import usePostQuery from "src/hooks/usePostQuery"
 import { FilterPostsOptions } from "src/libs/utils/notion/filterPosts"
-
-// Dynamically import Detail with ssr: false to avoid SSR of react-notion-x
-const Detail = dynamic(() => import("src/routes/Detail"), { ssr: false })
+import Detail from "src/routes/Detail"
 
 const filter: FilterPostsOptions = {
   acceptStatus: ["Public", "PublicOnDetail"],
