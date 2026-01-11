@@ -1,0 +1,778 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>김만수 (Mansoo) | Software Engineer, AI Agent</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+	word-break: keep-all;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	* {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	html {
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+		zoom: 0.8;
+		width: 100%;
+	}
+
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	article {
+		margin: 0;
+	}
+
+	/* 섹션 끊김 방지 */
+	h2 {
+		page-break-inside: avoid;
+		page-break-after: avoid;
+	}
+
+	h3 {
+		page-break-inside: avoid;
+		page-break-after: avoid;
+	}
+
+	/* 회사별 정보 블록이 끊기지 않도록 */
+	h2 ~ blockquote {
+		page-break-inside: avoid;
+		page-break-before: avoid;
+	}
+
+	ul {
+		page-break-inside: avoid;
+	}
+
+	li {
+		page-break-inside: avoid;
+	}
+}
+
+@page {
+	size: A4;
+	margin: 0.6in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2e5b4003-919d-8021-a224-ca2b0043d2b3" class="page sans"><header><h1 class="page-title" dir="auto" style="font-size: 2.25rem; margin-bottom: 0.25rem;">김만수 (Mansoo) | Software Engineer, AI Agent</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><div id="2e5b4003-919d-8056-9025-feb6dee48ac5" class="column-list" style="display: flex; align-items: center; gap: 40px;"><div style="display:contents" dir="auto"><div id="2e5b4003-919d-8030-9857-e9b5bc93567c" style="width:31.25%" class="column"><div style="display:contents" dir="ltr"><figure id="2e5b4003-919d-805a-ba99-f3057e3471c5" class="image"><img style="width:320px" src="./profile.png"/></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e5b4003-919d-80fb-a2f6-e616162bfb3e" style="width:68.75%" class="column"><div style="display:contents" dir="auto"><h3 id="2e5b4003-919d-80a3-8467-fe0a12c27aa1" class=""><mark class="highlight-orange">Contact.</mark></h3></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-8094-ad7a-e912067b6011" class="">E-Mail. <strong><a href="mailto:contact@teddy-kim.com">contact@teddy-kim.com</a></strong><strong> / </strong><strong><a href="mailto:mansoo0621@naver.com">mansoo0621@naver.com</a></strong></p></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-807d-98be-e56a866f5756" class="">Phone. <strong>010-9193-0828</strong></p></div><div style="display:contents" dir="auto"><h3 id="2e5b4003-919d-8086-9bd4-f4495c2e08bf" class=""><mark class="highlight-orange">Channel.</mark></h3></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80cc-9999-f14aab79f3fc" class="">GitHub. <a href="https://github.com/hello-mansoo">https://github.com/hello-mansoo</a></p></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-809d-a734-e6347eedaf7d" class="">Linkedin. <a href="https://www.linkedin.com/in/mansoo-teddy-kim">https://www.linkedin.com/in/mansoo-teddy-kim</a></p></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80cf-bd68-e48f36392e9a" class="">
+</p></div></div></div></div></div><div style="display:contents" dir="auto"><hr id="2e5b4003-919d-805d-922c-d37c5c76e993"/></div><div style="display:contents" dir="auto"><h1 id="2e5b4003-919d-8095-aaa5-d34583a6b650" class="block-color-orange"><mark class="highlight-orange">Introduce.</mark></h1></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-8016-92ae-f2f5b2c87210" class=""> <strong>“본질을 꿰뚫는 엔지니어”</strong>로, 문제의 본질을 꿰뚫어 보고 기술과 비즈니스의 경계를 넘나들며 제품의 성공에 필수적인 근본적 문제를 해결하기 위해 전념하는 <strong>Software Engineer </strong>입니다.</p></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-801c-bc38-db9e69876177" class=""> 개발하는 과정에서 저는 늘 <em>“왜 이 기술이 필요한가?”</em>, <em>“현재 상황에서 이것이 정말 최선의 선택인가?”</em> 라는 질문을 스스로에게 던지며, 그 답을 찾는 과정에서 다양한 기술을 신속하게 습득하고 적용해 왔습니다. 이 과정은 저에게 기술적 해결책에만 국한되지 않고, 기획과 디자인의 관점까지 연결해 문제를 바라보고 해결하는 유연성을 갖게 했으며, 최신 기술을 맹목적으로 적용하기보다 상황에 적합한 선택을 위해 <strong>trade-off</strong>를 고려하는 습관을 만들었습니다.</p></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80a5-aad7-eefb1c91ec72" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80fc-82b5-cf0714858ed4" class=""> 5년 간의 개발 경험을 바탕으로 Global Conversations Platform API와 AI Agent를 서비스하는 <strong>Sendbird</strong>에서 커리어를 확장해 왔습니다. Web Front-end 기반으로 시작했지만, Sendbird에서는 Developer Advocate로 AI Chatbot 제품을 중심으로 <strong>제품 주도 성장(PLG)을 위한 콘텐츠/온보딩(Engineering + Marketing)</strong> 을 경험하며 AI 제품을 깊이 다루기 시작했고, 이후 제품을 직접 체험할 수 있는 데모 경험을 구축하며 제품화 역량을 넓혔습니다.</p></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-8035-9013-f7853083c99e" class=""> 현재는 <strong>Software Engineer, AI Agent</strong>로서 <strong>AI Agent testing &amp; evaluation을 위한 Internal platform</strong>을 개발하며, 누군가가 정의해 준 요구사항을 구현하는 데서 멈추지 않고 문제 상황을 정의하고 기획·디자인·구현까지 high-level에서 연결해 더 빠른 검증과 개선이 가능한 워크플로우를 만들어가고 있습니다.</p></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80cb-a30a-dd8d5f69c4f3" class=""> 또한 개인 기술 블로그와 LinkedIn을 통해 일상에서 마주친 문제를 어떻게 해결했는지 기록하고 공유해왔고, DevRel 커뮤니티 <strong>Devchat</strong>에서 Organizer로 활동하며 그동안 배우고 탐구한 것들을 실제 실행으로 옮기는 데 주력해 왔습니다.</p></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-801c-9488-f709949a7dac" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80d7-acee-ccea079c927a" class=""> 변화하는 기술과 비즈니스 환경 속에서도 그 본질을 깊이 이해하고, 새로운 도전을 통해 더 나은 가치를 창출해 나가는 개발자가 되기 위해 노력하고 있으며, 이러한 경험들은 팀과 조직이 더 빠르게 학습하고 실행하는 데 기여할 수 있다고 믿습니다.</p></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-8004-b32a-fc2b4ed221f0" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="2e5b4003-919d-806d-83b9-ea6d26cb837f"/></div><div style="display:contents" dir="auto"><h1 id="2e5b4003-919d-8006-9295-e4bdbba6bc1c" class=""><mark class="highlight-orange">Work Experience.</mark></h1></div><div style="display:contents" dir="auto"><h2 id="2e5b4003-919d-8011-9f9f-e4a8f9ec965d" class=""><a href="https://sendbird.com">Sendbird</a></h2></div><div style="display:contents" dir="auto"><blockquote id="2e5b4003-919d-8000-98af-dfc5ddf0cc8a" class="block-color-gray">Enterprise 고객을 위한 Communications Platform API와 AI Agent 기반 고객 경험 솔루션을 제공하는  실리콘밸리의 서비스형 소프트웨어 (SaaS) 유니콘 기업</blockquote></div><div style="display:contents" dir="auto"><h3 id="2e5b4003-919d-8097-8517-e60d1b4c7ba0" class=""><strong>Software Engineer, AI Agent</strong> <mark class="highlight-gray">(2025.02 ~ Present)</mark></h3></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8038-8b93-fd418b348aee" class="bulleted-list"><li style="list-style-type:disc"><strong>AI Agent 테스트·평가를 위한 내부 플랫폼</strong> <em>(Internal platform for AI Agent testing &amp; evaluation)</em><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8072-934c-ed18f7ed9aae" class="bulleted-list"><li style="list-style-type:circle">킥오프 단계부터 <strong>요구사항 정의 → 제품 기획/UX → 구현/개선</strong>까지 전 과정에 참여하며 핵심 기능 개발에 기여 <em>(core contributor)</em></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80ca-a59f-ef6a53bf8c05" class="bulleted-list"><li style="list-style-type:circle"><strong>대화 시나리오 기반 테스트/평가 방식</strong>을 정리하고, 내부/고객 피드백을 반영해 지속적으로 개선</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80a0-b683-fbf217bb33bf" class="bulleted-list"><li style="list-style-type:circle">확장 과정에서 <strong>Frontend/Backend 아키텍처 전환</strong>에 참여(리뷰·정합성 검증 중심)하여 기능 누락 방지 및 품질 안정화에 기여</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80d4-b8f8-f7bec3b9a585" class="bulleted-list"><li style="list-style-type:disc"><strong>PoC 가속을 위한 리뷰·라벨링 내부 플랫폼</strong> <em>(Internal human review &amp; labeling platform for PoC acceleration)</em><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8075-8699-e56cdc995105" class="bulleted-list"><li style="list-style-type:circle">PoC 과정에서 빠른 검증을 위해 <strong>리뷰/라벨링 워크플로우</strong>를 지원하는 내부 툴을 설계·구축 <em>(core contributor)</em></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80d4-8cd3-d1ed40852a46" class="bulleted-list"><li style="list-style-type:circle"><strong>기능 기획 → DB 스키마 구성 → UI/UX → 구현</strong>을 짧은 개발 사이클로 진행하며, 필요한 기능을 우선 적용해 빠르게 검증</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8034-b1a7-d459c90d1bcf" class="bulleted-list"><li style="list-style-type:circle">현장 피드백을 수집해 개선사항을 정리하고, 짧은 주기로 반영하여 <strong>PoC 실행 속도 및 운영 효율</strong>을 개선</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-8043-b258-f53627d96ead" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2e5b4003-919d-80bb-bf63-d00939ef1ccb" class="">Developer Advocate <mark class="highlight-gray">(2024.07 ~ 2025.02)</mark></h3></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8092-953b-c308e256fe0a" class="bulleted-list"><li style="list-style-type:disc"><strong>Demos hub 프로젝트</strong> <em>(Demo experience hub for product discovery | </em><em><a href="https://sendbird.com/demos">https://sendbird.com/demos</a></em><em>)</em><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-809c-a5e5-fdb5914ccad7" class="bulleted-list"><li style="list-style-type:circle">Product Marketing / Design team과 협업해 <strong>제품 데모 경험을 한 곳에 모은 웹 허브</strong>의 기획·구축에 기여 <em>(core contributor)</em></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8080-8332-d6e97184a6bf" class="bulleted-list"><li style="list-style-type:circle">초기에는 각 use case 페이지에 데모를 <strong>임베드(iframe) 형태로 제공하는 v1</strong>을 구축해 빠르게 검증하고, 세션 리플레이/행동 분석 등 <strong>사용자 행동 데이터</strong>를 기반으로 개선 포인트를 도출</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-800f-803d-d6a3d0b815ca" class="bulleted-list"><li style="list-style-type:circle">데이터 근거로 Demos hub로의 구조<strong> 전환</strong>을 제안하고 합의를 이끌어, 정보 구조 및 데모 제공 방식 개선을 추진</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80f2-9198-ebba6c331e67" class="bulleted-list"><li style="list-style-type:circle">제품을 “바로 체험”할 수 있는 진입 경로를 강화해 <strong>온보딩 및 세일즈/마케팅 활동</strong>을 지원</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8029-a0b3-e78567a3e38d" class="bulleted-list"><li style="list-style-type:disc"><strong>AI Chatbot 온보딩·활용 확산 콘텐츠</strong> <em>(AI Chatbot enablement content for PLG)</em><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-807b-9c02-ce1618b21241" class="bulleted-list"><li style="list-style-type:circle">비전문가/주니어 개발자 대상의 <strong>실전형 가이드(영상/문서)</strong>를 제작해 제품 이해와 초기 셋업을 지원</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80de-952a-d44e878124e0" class="bulleted-list"><li style="list-style-type:circle">Prompt 설정, 주요 기능 구성, 웹사이트 삽입(CMS/사이트 빌더 등) 중심으로 <strong>재현 가능한 튜토리얼</strong> 형태로 구성</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8047-bbac-f9eae97e28a8" class="bulleted-list"><li style="list-style-type:disc"><strong>Docs 사이트 운영 및 개선</strong> <em>(</em><em><a href="https://sendbird.com/docs">https://sendbird.com/docs</a></em><em>)</em><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80b4-ba2b-cf53e0d2f6c8" class="bulleted-list"><li style="list-style-type:circle">사용자 피드백 제출 플로우의 병목을 분석해(Serverless 처리 구간 포함) 개선을 진행하고, <strong>응답 시간을 15초 → 5~6초 수준으로 단축</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-808c-b5c2-e72238d6c0f7" class="bulleted-list"><li style="list-style-type:circle">Technical Writer와 협력해 문서 구조/탐색 경험 개선에 참여하고, known issue를 지속적으로 해결</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80c3-90ed-ef28b081230e" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="2e5b4003-919d-8071-9020-fc33d3f067ec" class=""><a href="https://regacy.co.kr">리레거시</a></h2></div><div style="display:contents" dir="auto"><blockquote id="2e5b4003-919d-80ab-8f65-ef49917381a9" class="block-color-gray">프리미엄 안경 브랜드 REGACY(https://regacy.co.kr) 를 운영하고 있는 초기 스타트업</blockquote></div><div style="display:contents" dir="auto"><h3 id="2e5b4003-919d-80ee-82e1-c121fc4f460e" class=""><strong>CTO</strong> <mark class="highlight-gray">(2024.01 ~ 2024.07 | 계약직)</mark></h3></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80cd-8630-c0d8442e30ef" class="">대학교 4학년 1학기와 병행하며 기술 전반을 총괄했고, 한정된 리소스 환경에서 <strong>비즈니스 관점의 trade-off</strong>를 고려해 <strong>MVP → 단계적 고도화</strong> 방식으로 추진했습니다.</p></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80d0-916d-da6988ee48e1" class="bulleted-list"><li style="list-style-type:disc"><strong>REGACY 브랜드 쇼핑몰 구축</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80bf-a896-defc6da6a037" class="bulleted-list"><li style="list-style-type:circle">기획/디자인을 바탕으로 범위·일정(공수)을 산정하고, 반응형 쇼핑몰을 구축</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80ac-8808-d8fa79ce8533" class="bulleted-list"><li style="list-style-type:circle">재사용 가능한 공통 UI 컴포넌트를 설계·구현(슬라이더/모달 등)</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8072-af06-d055123e51a1" class="bulleted-list"><li style="list-style-type:circle">대용량 고화질 미디어 제공을 위해 <strong>HLS 도입</strong>, AWS(S3/CloudFront/WAF) 기반 배포·보안·비용 최적화</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80d9-8d9b-c2e91f00958c" class="bulleted-list"><li style="list-style-type:disc"><strong>신규 B2B SaaS 프로덕트 개발(총괄)</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80c7-b0e2-f323fa928bd4" class="bulleted-list"><li style="list-style-type:circle">산학협력 진행을 위한 초기 기획/협의를 주도하고, MVP 기준 마일스톤·로드맵을 정의</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8072-b5e9-dcbfbb126ce5" class="bulleted-list"><li style="list-style-type:circle">Notion 기반으로 <strong>ALM </strong>(Application Lifecycle Management)<strong> + 문서 관리</strong>를 통합한 프로젝트 운영 체계를 구축</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80bf-9f6d-fab40dd1991b" class="bulleted-list"><li style="list-style-type:circle">모노레포 기반 Front-end 개발 및 Docker·GitHub Actions·AWS 기반 CI/CD 구성/고도화를 추진</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80d9-841c-dc863a9cbbb9" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="2e5b4003-919d-80fe-a730-da4a00d05c3f" class=""><a href="https://www.herrencorp.com">헤렌</a></h2></div><div style="display:contents" dir="auto"><blockquote id="2e5b4003-919d-80f0-b1f4-c438375f0101" class="block-color-gray">2016년 창업 이후 연평균 75%의 성장을 투자 없이 자체적으로 이뤄내고 있는 스타트업</blockquote></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2e5b4003-919d-8005-820a-f23eb8fae8dc"><div style="font-size:1.5em"><span class="icon">📎</span></div><div style="width:100%">2023년 9월부터 12월까지 4개월은 대학교 3학년 2학기와 회사 생활을 병행했습니다.<br/>병행을 위해 사측과 협의해 프리랜서로 계약을 변경해 근무했습니다. (근무 내용은 동일)</div></figure></div><div style="display:contents" dir="auto"><h3 id="2e5b4003-919d-80a2-8426-e5dadef30d7c" class="">Frontend Developer <mark class="highlight-gray">(2022.07 ~ 2023.12)</mark></h3></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80a7-b01f-e5854b9e0806" class="">B2B CRM SaaS “공비서”의 웹 프론트엔드를 담당했습니다. <strong>JSP 레거시와 React/Next.js/TypeScript 기반 화면이 공존</strong>하는 환경에서 신규 기능 개발, 레거시 마이그레이션, 프론트 인프라 운영/장애 대응을 수행했으며, 기술협의체의 일원으로 주요 기술 변화와 아키텍처 방향성 논의에 참여했습니다.</p></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8040-9e2b-f83663596aa1" class="bulleted-list"><li style="list-style-type:disc"><strong>CRM 캘린더·예약 도메인 개편</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80d4-8c4a-fc9c1eba02c2" class="bulleted-list"><li style="list-style-type:circle">PoC 기반으로 구현 방식을 검증하고, 범위/일정(공수)을 산정해 개발 계획을 수립</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8078-884d-fa55fb1ec147" class="bulleted-list"><li style="list-style-type:circle">예약 등록 기능을 설계·구현하며 공통 로직을 추상화하고, 케이스별 분기/레거시(JSP) 연동을 정리</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80d7-aa00-decb46d152c0" class="bulleted-list"><li style="list-style-type:circle">WebView 공통 UI 컴포넌트(BottomSheet 등)와 <strong>앱–웹 브릿지</strong> 연동을 설계(네이티브 개발자와 협업)</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-800f-b812-d64e93f2399a" class="bulleted-list"><li style="list-style-type:circle">JSP↔Next.js 혼재 환경의 로컬 연동을 위해 <strong>nginx 리버스 프록시</strong>를 구성하고 팀 적용을 위한 문서화/가이드 제공</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-801a-9557-d6bc7a9b3d90" class="bulleted-list"><li style="list-style-type:disc"><strong>고객 데이터 이관 기능 개발</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-807d-b0fe-d63982d5b086" class="bulleted-list"><li style="list-style-type:circle">Drag &amp; Drop 업로드 컴포넌트 구현 및 파일 포맷 검증/제한 로직 추가</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-803e-8452-eeee95ed0972" class="bulleted-list"><li style="list-style-type:disc"><strong>Front-end 운영/장애 대응</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80f6-aef7-e695b99ef2ad" class="bulleted-list"><li style="list-style-type:circle">APM 도입 후 트래픽 및 JavaScript 에러를 모니터링하고 라이브 이슈를 추적</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8094-8b0c-fc6b6ae5e586" class="bulleted-list"><li style="list-style-type:circle">장애 대응 시나리오를 정리하고 문서화하여 운영 안정성을 개선</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80bb-a9ba-e1dbaa0b985a" class="bulleted-list"><li style="list-style-type:disc"><strong>기타</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80ad-b909-c44fce3146e2" class="bulleted-list"><li style="list-style-type:circle">코드 리뷰 프로세스/문화 개선안을 정리해 개발 파트에 적용 <mark class="highlight-gray">(https://blog.teddy-kim/improve-code-review)</mark></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80ff-b995-e75c9fdcebda" class="bulleted-list"><li style="list-style-type:circle">프론트엔드 채용 인터뷰 참여 및 사내 요청 기반 웹 페이지 개선, 비개발 직군 대상 기초 강의 진행</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-8053-a371-d84188d366c1" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2e5b4003-919d-8059-bde1-ebee5aad12a4" class="">Scrum Master <mark class="highlight-gray">(2023.01 ~ 2023.04)</mark></h3></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8013-a0dc-d61a6a4b6fa8" class="bulleted-list"><li style="list-style-type:disc">캘린더 개편 스쿼드의 데일리 스크럼, 스프린트 리뷰/회고를 운영하며 진행을 지원했습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-800e-8f79-d24d4e4a819d" class="bulleted-list"><li style="list-style-type:disc">직군별 업무 특성을 고려해 커뮤니케이션을 정리했고, 스프린트 중 발생하는 기술 이슈에 대해 팀 간 조율을 돕습니다.</li></ul></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80a0-91fc-cae197e24a27" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="2e5b4003-919d-80ab-8645-f8116caf2b46"/></div><div style="display:contents" dir="auto"><h2 id="2e5b4003-919d-80a0-bdfa-d1c35124d78b" class=""><a href="https://techlabs.co.kr">테크랩스 (구. 넥스트매치)</a></h2></div><div style="display:contents" dir="auto"><blockquote id="2e5b4003-919d-805f-a118-f200abe938cb" class="block-color-gray">2014년 출시 이후 누적 가입자 수 660만명을 보유한 데이팅 앱 <a href="http://amanda.co.kr">아만다</a>, 데이팅 앱 최초로 이상형 월드컵 시스템을 도입한 <a href="http://endlessdream.co.kr">너랑나랑</a>, 누적 다운로드 1,200만을 돌파한 운세 앱 <a href="https://www.jeomsin.co.kr/">점신</a>을 서비스하는 스타트업으로, KTB네트워크, HB인베스트먼트로부터 60억원의 투자 유치, IBK투자증권과 주관사 계약 후 IPO 추진.</blockquote></div><div style="display:contents" dir="auto"><h3 id="2e5b4003-919d-800c-b369-ccfa9aefa54a" class="">신사업팀 Frontend Lead <mark class="highlight-gray">(2021.02 ~ 2022.07)</mark></h3></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80c8-bfbc-eda465fa7d8a" class="">신사업팀에서 여러 프로젝트의 Front-end 개발을 담당했고, 범위/일정 산정부터 팀 내 협업 프로세스까지 정리하며 Front-end 파트를 리드했습니다. SPA/MPA 혼재 환경에서 공통 구조/컨벤션을 수립하고, 배포/운영 체계를 표준화해 생산성을 높였습니다.</p></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80bd-8d14-fa212e14add2" class="bulleted-list"><li style="list-style-type:disc">HTML5 / CSS3 / JavaScript (ES6) / jQuery / Kendo UI Framework / PHP v7.4 / MySQL 기반 웹 애플리케이션 개발 (SPA - Single Page Application / MPA - Multiple Page Application 복합적으로 진행)</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8072-b1d9-ce54a49dbfd8" class="bulleted-list"><li style="list-style-type:disc">공통 컴포넌트/유틸을 설계·구현하고, WebView 기반 <strong>앱–웹 연동(Android/Flutter)</strong> 을 지원</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80dc-ad8b-e614385e88c2" class="bulleted-list"><li style="list-style-type:disc">기획/백엔드와 협업해 기능 범위·일정 산정 및 업무 분장을 진행하고, PR 리뷰/머지 프로세스를 운영</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-806f-be87-f440875e90ba" class="bulleted-list"><li style="list-style-type:disc">Git 브랜치 전략 및 배포 프로세스를 정리하고, 개발 서버 <strong>CD 자동화</strong>와 버저닝/배포 문서 템플릿을 구축</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8059-8141-d7955840ba19" class="bulleted-list"><li style="list-style-type:disc">Jira/Confluence 도입 및 업무 요청 프로세스 정립, 협업 툴 가이드/내부 교육 및 온보딩 체계를 마련</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80bb-8e8e-d58c96cd604a" class="bulleted-list"><li style="list-style-type:disc"><a href="http://amanda.co.kr">아만다 서비스 소개 페이지</a> 리뉴얼, 아만다 &amp; 너랑나랑 랜딩, 이벤트 페이지 개발 <em><mark class="highlight-gray">(https://amanda.co.kr)</mark></em></li></ul></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-8092-92b6-d567f1cc30a4" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2e5b4003-919d-8019-94ce-f5cd94e5c9ca" class="">Backend Developer <mark class="highlight-gray">(2021.01 ~ 2021.05)</mark></h3></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-8098-b527-eb2431c1df20" class="">신사업팀에서 런칭, 운영하고 있는 탈모 커뮤니티 서비스 <strong>머리바바</strong>의 서버 API 개발 &amp; 유지보수를 담당했습니다.</p></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8089-bf73-f1ba1366eeec" class="bulleted-list"><li style="list-style-type:disc">PHP(MariaDB) 기반 API 개선 및 운영성 강화(우선순위 조정 → 개선 → 배포)</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80ed-9ebd-d9d74b6292a1" class="bulleted-list"><li style="list-style-type:disc">이벤트 수집 시스템 구축 및 CMS 대시보드 기능 개발로 지표 확인/운영 편의성 향상</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8088-ad02-e86e22a269be" class="bulleted-list"><li style="list-style-type:disc">차단 기능, 로그인/푸시(FCM) 개선, SSL 자동 갱신 배치, 일부 SQL 튜닝 등 운영 이슈 해결</li></ul></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-800d-a784-cb5bc94e308d" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2e5b4003-919d-8011-a78d-cef9583d1113" class="">QA <mark class="highlight-gray">(2020.07 ~ 2020.12)</mark></h3></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80df-8e41-eb043102930b" class="">개발 프로세스를 익히며 신규 기능 런칭 품질을 담당했고, 요구사항 기반 테스트 설계/수행 및 이슈 트래킹을 진행했습니다.</p></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8024-b7b1-c02d9cdcc149" class="bulleted-list"><li style="list-style-type:disc">기획안 검토 후 QA 일정 산정, 테스트 케이스 설계/유지보수</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80fa-9550-e563105fd44b" class="bulleted-list"><li style="list-style-type:disc">요구사항 분석 기반 테스트 수행 및 Jira 기반 버그 리포팅/이슈 추적</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-804c-ad85-df6e1bba91a4" class="bulleted-list"><li style="list-style-type:disc">런칭 후 회귀 테스트 및 지속적 품질 개선</li></ul></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-809b-bb11-e0cb7f9faff1" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="2e5b4003-919d-80bb-90fb-ebe6520bd2a2"/></div><div style="display:contents" dir="auto"><h2 id="2e5b4003-919d-803b-90ad-d7c52dd676bf" class=""><a href="http://likelion.net">멋쟁이사자처럼</a></h2></div><div style="display:contents" dir="auto"><blockquote id="2e5b4003-919d-807e-901c-c50601cb1ce9" class="block-color-gray">2013년 비영리법인으로 시작해 국내외 9,000여명의 대학생에게 프로그래밍 교육을 제공. 2018년 5월 영리법인으로 전환하여 &#x27;멋쟁이사자처럼 대학생&#x27; / &#x27;직장인&#x27; / &#x27;AI School&#x27;, &#x27;광주인공지능사관학교&#x27; 등의 오프라인 교육과 글로벌 온라인 코딩 교육 플랫폼 &#x27;프로젝트 라이언&#x27;을 개발, 운영.</blockquote></div><div style="display:contents" dir="auto"><h3 id="2e5b4003-919d-806c-b1ed-dcc354368bf7" class="">대학생 Community Manager <mark class="highlight-gray">(2020.04 ~ 2020.10)</mark></h3></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80e3-9dbc-e064b6eb391f" class="">전국 대학 커뮤니티 운영을 지원하며 본부–학교 대표 간 커뮤니케이션을 조율했습니다.</p></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8068-bfe8-c31fc326f2ef" class="bulleted-list"><li style="list-style-type:disc">50개 대학 대표들과의 격주 대표 회의를 총괄 운영</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-804a-bb07-e5c7a2079167" class="bulleted-list"><li style="list-style-type:disc">본부–학교 대표 간 운영 커뮤니케이션 및 지원 업무 수행</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8081-8ce0-e7e2e84dd11d" class="bulleted-list"><li style="list-style-type:disc">기존 강의 제작 방식 개선: 대표들이 직접 강의를 제작하는 프로젝트를 기획·리드</li></ul></div><div style="display:contents" dir="auto"><h3 id="2e5b4003-919d-8003-8aeb-fa8501aef00b" class="">8기 공식 강의 Lecturer <mark class="highlight-gray">(2020.04 ~ 2020.16)</mark></h3></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-800d-9300-e68e433c1dc5" class="bulleted-list"><li style="list-style-type:disc">공식 온라인 강의 <strong>“Django 기초 – 드리머리 만들기”</strong> 기획·제작(총 8강)</li></ul></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80fa-9ad8-e284fdee3a3d" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="2e5b4003-919d-805f-84c9-e1d125655bde"/></div><div style="display:contents" dir="auto"><h1 id="2e5b4003-919d-80f1-8f7c-f3f0521e64a0" class=""><mark class="highlight-orange">Other Experience.</mark></h1></div><div style="display:contents" dir="auto"><h2 id="2e5b4003-919d-8065-be2c-d9299b2277de" class="">Community.</h2></div><div style="display:contents" dir="auto"><h3 id="2e5b4003-919d-80f5-869f-d8c0737a60cd" class="">Devchat Organizer <mark class="highlight-gray">(2024.01 ~ Present)</mark></h3></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-8077-b3d6-cd9893a0be7a" class="">국내 DevRel 관심/실무자들이 교류하는 커뮤니티 <strong>Devchat(DevRel Alliance @KR)</strong> 운영진으로 활동하고 있습니다. 운영진 중 <strong>유일한 개발자</strong>로서, 개발자들이 DevRel 분야에 자연스럽게 입문하고 참여할 수 있도록 활동을 지원합니다.</p></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-804d-bfeb-fe237bc90d78" class="bulleted-list"><li style="list-style-type:disc">커뮤니티 운영 전반에 참여하며, 개발자 관점에서 프로그램/세션 기획 및 운영 지원</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8027-89c6-e9e70e85121a" class="bulleted-list"><li style="list-style-type:disc">DevRel·개발자 참여를 확대하기 위한 온보딩/가이드 성격의 콘텐츠 및 활동을 기획·실행</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-802e-aa00-e629828620b5" class="bulleted-list"><li style="list-style-type:disc">커뮤니티 운영 과정에서 필요한 기술적 지원(웹/툴링/운영 자동화 등)을 수행</li></ul></div><div style="display:contents" dir="auto"><h2 id="2e5b4003-919d-80bd-9c03-eef17da25327" class="">Speaker.</h2></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8014-b8f7-fd5e4168e46b" class="bulleted-list"><li style="list-style-type:disc"><strong>Devchat Night - Community Session (2025.12.03)</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-802a-b3f0-df112eb00135" class="bulleted-list"><li style="list-style-type:circle">개발자에서 어드보케이트로, Devchat과 함께한 성장기 (공유가 만들어낸 커리어의 확장과 DevRel로의 전환)</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80aa-adf6-f52651ae0250" class="bulleted-list"><li style="list-style-type:circle">Related article: <a href="https://www.cio.com/article/4111488/%ea%b0%9c%eb%b0%9c%ec%9e%90-ai-%ec%a7%80%ec%9b%90-%ec%96%b4%eb%94%94%ea%b9%8c%ec%a7%80-%ec%99%94%eb%82%98%ec%95%a4%ed%8a%b8%eb%a1%9c%ed%94%bd%c2%b7%ed%86%a0%ec%8a%a4%c2%b7%ec%98%ac%eb%a6%ac.html">https://www.cio.com/article/4111488/개발자-ai-지원-어디까지-왔나앤트로픽·토스·올리.html</a></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8009-b20f-cdb62ac385cb" class="bulleted-list"><li style="list-style-type:disc"><strong>Devchat - Monthly Meetup (2025.08.29)</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80af-b883-ce610a7fdfff" class="bulleted-list"><li style="list-style-type:circle">DevRel 담당자들을 위한 Vibe Coding Quickstart</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8043-a197-eba3a632b376" class="bulleted-list"><li style="list-style-type:disc"><strong>Devchat - Monthly Meetup (2024.11.02)</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80d8-aefc-c1137e2cbd34" class="bulleted-list"><li style="list-style-type:circle">Moderator - 글로벌 빅테크 기업들의 DevRel</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-800f-ba8d-dffacedee7ce" class="bulleted-list"><li style="list-style-type:disc"><strong>우아한형제들 - 우아콘 (WoowaCon) (2024.10.30)</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-809d-ade8-cf956425672e" class="bulleted-list"><li style="list-style-type:circle">Ignite Track - 첫 입사 후 1년 간 4번의 직무 전환, 저 큰일난 걸까요?</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-808b-98b7-dda38839dfa5" class="bulleted-list"><li style="list-style-type:disc"><strong>현대자동차그룹 - HMG DEVELOPERS (2024.10.30)</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8047-b99c-c627200ea172" class="bulleted-list"><li style="list-style-type:circle">HMG Developers 필진 대상 온라인 글쓰기 강의</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8013-ab13-e0b918048920" class="bulleted-list"><li style="list-style-type:disc"><strong>SSG닷컴 - 데브톡 (2024.04.12)</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80dc-bee6-fbf121f68b37" class="bulleted-list"><li style="list-style-type:circle">사이드 프로젝트 덕분에 ${job}이 되었습니다 (부제: 주저하는 직장인들을 위해)</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80bf-a68a-fb8e396f01d8" class="bulleted-list"><li style="list-style-type:disc"><strong>GDSC (Google Developer Student Club) Yonsei - oTL Tech Meetup (2024.03.28)</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8009-8221-e594b52e3359" class="bulleted-list"><li style="list-style-type:circle">사이드 프로젝트 덕분에 ${job}이 되었습니다</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8010-8796-e40771b59a52" class="bulleted-list"><li style="list-style-type:disc"><strong>GDG (Google Developer Group) Seoul - DevFest 2023 (2023.12.02)</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80aa-8579-f1b07cde6e89" class="bulleted-list"><li style="list-style-type:circle">코드 리뷰 문화를 리뷰해 봐요 (PR Reminder Bot 개발 이야기)</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80c0-acaa-d916173e81c4" class="bulleted-list"><li style="list-style-type:disc"><strong>SK DEVOCEAN - Tech Day (2023.10.20)</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8085-a9f2-dfc182b21ae0" class="bulleted-list"><li style="list-style-type:circle">코드 리뷰 문화를 리뷰해 봐요 (PR Reminder Bot 개발 이야기)</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h2 id="2e5b4003-919d-8034-aaa2-fc8702261135" class="">Side Project.</h2></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-809d-9468-fa0545cabd93" class="bulleted-list"><li style="list-style-type:disc"><strong>코드 리뷰 프로세스 개선 &amp; PR Reminder Bot 개발</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8068-8fa6-fdb95c897b73" class="bulleted-list"><li style="list-style-type:circle"><a href="https://blog.teddy-kim.com/improve-code-review">https://blog.teddy-kim.com/improve-code-review</a></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80db-80b8-f2af882aad2a" class="bulleted-list"><li style="list-style-type:disc"><strong>한식 뷔페 점심 메뉴 이미지 Crawling Slack Bot 개발 &amp; 사내 구성원들을 위해 배포</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80f8-8751-d79ea16c5a0e" class="bulleted-list"><li style="list-style-type:disc"><strong>Notion을 Database로 활용하는 Next.js 기반 개인 기술 블로그 개발 및 운영</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-800a-9fe7-e10f554eaa16" class="bulleted-list"><li style="list-style-type:disc">식당 O2O 예약 및 주문 플랫폼 <strong>“바로잇”</strong><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8081-bb8a-deccb6080bec" class="bulleted-list"><li style="list-style-type:circle">명지대학교 창업경진대회 우수상 수상 - 2019.11</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80c9-9915-d9a6e3ed88f9" class="bulleted-list"><li style="list-style-type:circle">팀장으로서 전체적인 프로젝트 진행, 유관 부서와의 커뮤니케이션, 프레젠테이션 총괄 진행</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80b9-9921-d409b4d935f9" class="bulleted-list"><li style="list-style-type:disc">멋쟁이사자처럼 at 명지대(서울) 8기 지원 사이트<div style="display:contents" dir="auto"><ul id="2e5b4003-919d-803d-8811-e589bdc04835" class="bulleted-list"><li style="list-style-type:circle">Python 기반 웹 프레임워크 Django를 활용해 SSR 방식으로 개발</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80b8-a316-df5dd657e6c6" class="bulleted-list"><li style="list-style-type:circle">유저 시나리오 중 예외 케이스의 발생을 방지해야 하는 부분으로 허위 가입과 중복 지원을 방지해야 한다고 판단, 가입 과정에서 이메일 인증과 지원서 제출이 이루어지면 다시 제출 과정으로 접속할 수 없도록 예외 처리</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8049-b44a-d2539d7dfebc" class="bulleted-list"><li style="list-style-type:circle">Frontend / Backend 파트로 이원화, Git을 활용한 협업 진행</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h2 id="2e5b4003-919d-8083-ae3b-cd269dc94abc" class="">Mentoring / Interview / Meetup.</h2></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-807b-8ab1-fdf1a7083978" class="bulleted-list"><li style="list-style-type:disc">멋쟁이사자처럼<div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80a3-911e-f13d40fe66bf" class="bulleted-list"><li style="list-style-type:circle">대학 특강 - 알럼나이 (2024.10.25) “전공 과목조차 따라가지 못하던 제가 센드버드에서 개발을 한다고요?”</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8068-be58-d0d581f2ab85" class="bulleted-list"><li style="list-style-type:circle">어흥콘 (2024.09.29) - 세션 진행 및 심사위원</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-805d-8b05-e170041fe588" class="bulleted-list"><li style="list-style-type:circle">4호선톤 (2024.11.27) - Front-end 심사위원</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-804e-b0dd-ec3fce14bbf5" class="bulleted-list"><li style="list-style-type:disc">서울대학교 실전전략컨설팅학회 ACT<div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8006-bc86-ff7d5db15282" class="bulleted-list"><li style="list-style-type:circle">데이터 사이언스, 프로그래밍 분야의 “직무 역량&quot;과 “성인 온라인 직무 교육&quot;에 대한 현직자, 채용 담당자 인터뷰  (2021.11.08)</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80c1-afd0-eb00d3fd88f0" class="bulleted-list"><li style="list-style-type:disc">명지대학교 ICT융합대학 학술 동아리 Build<div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80d1-ae0b-ea5b266bac8d" class="bulleted-list"><li style="list-style-type:circle">현직자 Webinar (2021.04.14)</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80e8-863b-ff7642dd7b32" class="bulleted-list"><li style="list-style-type:disc">멋쟁이사자처럼 at 명지대(서울)<div style="display:contents" dir="auto"><ul id="2e5b4003-919d-800b-a6cb-c6eb330ef532" class="bulleted-list"><li style="list-style-type:circle">선배와의 만남 (2021.05)</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-8008-a3f5-cd8ebede75d3" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="2e5b4003-919d-8057-8c12-cc23854f1f8c" class="">Etc.</h2></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-80e5-8ff7-f688e53013a4" class="bulleted-list"><li style="list-style-type:disc">명지대학교 DIY 해외도전 프로그램 미국 실리콘밸리 연수 - 2019.12 - 2020.01</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-803f-87b8-d166008bef4e" class="bulleted-list"><li style="list-style-type:disc">서울관악진로교육센터 융합소프트웨어학부 멘토 - 2019.07 - 2020.06</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8045-b9f9-dceccc685ff4" class="bulleted-list"><li style="list-style-type:disc">명지대학교 입학처 전공알리GO 융합소프트웨어학부 멘토 - 2019.03 - 2019.12</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8069-931a-e7370091aa5d" class="bulleted-list"><li style="list-style-type:disc">명지대학교 입학처 전공알리GO 컴퓨터공학과 멘토 - 2018.03 - 2018.12</li></ul></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80db-86e1-d5dffe8c0173" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="2e5b4003-919d-8035-a27a-e85091ea62e2"/></div><div style="display:contents" dir="auto"><h1 id="2e5b4003-919d-8026-a841-cd737f0b4778" class=""><mark class="highlight-orange">Skill.</mark></h1></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8016-9ebd-f632c42367cf" class="bulleted-list"><li style="list-style-type:disc">Front-End<div style="display:contents" dir="auto"><ul id="2e5b4003-919d-804b-88b8-d5547051cc83" class="bulleted-list"><li style="list-style-type:circle">React, Next.js, TypeScript, Styled-Component, Emotion, Tailwind CSS, JavaScript (ES5+), jQuery, HTML, CSS, JSP</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8022-90a8-ff5c054e1a22" class="bulleted-list"><li style="list-style-type:disc">Back-End<div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8025-a023-ff76c3eb3ff0" class="bulleted-list"><li style="list-style-type:circle">Django, PHP, Linux, AWS EC2 / Elastic Beanstalk / ECR, Nginx, Apache, Docker</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-803a-bae5-ce465f1ac7f4" class="bulleted-list"><li style="list-style-type:disc">Database<div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8037-a400-f769133abc74" class="bulleted-list"><li style="list-style-type:circle">MySQL, MariaDB, MongoDB</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-8071-8f46-c5b755f7e5f2" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="2e5b4003-919d-802a-9d5d-de47bd9fac4f"/></div><div style="display:contents" dir="auto"><h1 id="2e5b4003-919d-8096-b7df-f370bf162113" class=""><mark class="highlight-orange">Education.</mark></h1></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-80fe-bb6b-d98137d694a5" class=""><strong>2018.03 - 2025.02 | 명지대학교 융합소프트웨어학부 응용소프트웨어 전공</strong></p></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-800b-8f75-f0e7e986543d" class="bulleted-list"><li style="list-style-type:disc">Java 기반 CS/소프트웨어 설계(디자인 패턴, 분산 프로그래밍) 학습 및 Spring Boot 기반 REST API 프로젝트 수행</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-806e-80bd-de91d07f142d" class="bulleted-list"><li style="list-style-type:disc">ERP/RPA/BPA 과목을 수강하며 비즈니스–IT 융합 관점 확장</li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8067-853f-c153650c77e1" class="bulleted-list"><li style="list-style-type:disc">창업경진대회: 식당 O2O 서비스 기획·프로토타입 개발, <strong>우수상</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="2e5b4003-919d-8072-9e9e-fd849cdd7ec7" class="bulleted-list"><li style="list-style-type:disc">입학처 전공알림단/공공기관에서 소프트웨어 전공 멘토링 진행</li></ul></div><div style="display:contents" dir="auto"><p id="2e5b4003-919d-8063-b257-d2b3cdc7ebf1" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

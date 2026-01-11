@@ -1,6 +1,7 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /resume.html
 
 # Host
 Host: https://blog.teddy-kim.com/
