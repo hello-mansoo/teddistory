@@ -28,11 +28,13 @@
   "dependencies": {
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
+    "katex": "0.18.4",
     "mermaid": "12.0.0",
     "next": "16.3.5",
     "notion-client": "8.0.8",
     "notion-types": "8.0.8",
     "notion-utils": "8.0.8",
+    "prismjs": "1.30.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-icons": "5.7.0",
