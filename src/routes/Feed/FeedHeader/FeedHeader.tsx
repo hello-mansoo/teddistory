@@ -1,15 +1,16 @@
-import { TCategories } from "src/types"
-import React from "react"
+import styled from "@emotion/styled"
+import type { TPosts } from "src/types"
 import CategorySelect from "./CategorySelect"
 import OrderButtons from "./OrderButtons"
-import styled from "@emotion/styled"
 
-type Props = {}
+type Props = {
+  posts: TPosts
+}
 
-const FeedHeader = () => {
+const FeedHeader = ({ posts }: Props) => {
   return (
     <StyledWrapper>
-      <CategorySelect />
+      <CategorySelect posts={posts} />
       <OrderButtons />
     </StyledWrapper>
   )

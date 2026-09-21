@@ -1,20 +1,17 @@
-import React from "react"
-import PostHeader from "./PostHeader"
-import Footer from "./PostFooter"
-import CommentBox from "./CommentBox"
-import Category from "src/components/Category"
 import styled from "@emotion/styled"
+import Category from "src/components/Category"
+import type { PostDetail as PostDetailType } from "src/types"
 import NotionRenderer from "../components/NotionRenderer"
-import usePostQuery from "src/hooks/usePostQuery"
+import CommentBox from "./CommentBox"
+import Footer from "./PostFooter"
+import PostHeader from "./PostHeader"
 
-type Props = {}
+type Props = {
+  data: PostDetailType
+}
 
-const PostDetail = () => {
-  const data = usePostQuery()
-
-  if (!data) return null
-
-  const category = (data.category && data.category?.[0]) || undefined
+const PostDetail = ({ data }: Props) => {
+  const category = data.category?.[0] || undefined
 
   return (
     <StyledWrapper>

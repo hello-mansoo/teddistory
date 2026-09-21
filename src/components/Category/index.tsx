@@ -1,13 +1,14 @@
-import { useRouter } from "next/router"
-import React from "react"
-import { COLOR_SET } from "./constants"
 import styled from "@emotion/styled"
+import { useRouter } from "next/router"
 import { colors } from "src/styles"
+import { COLOR_SET } from "./constants"
 
 export const getColorClassByName = (name: string): string => {
   try {
-    let sum = 0
-    name.split("").forEach((alphabet) => (sum = sum + alphabet.charCodeAt(0)))
+    const sum = [...name].reduce(
+      (total, alphabet) => total + alphabet.charCodeAt(0),
+      0
+    )
     const colorKey = sum
       .toString(16)
       ?.[sum.toString(16).length - 1].toUpperCase()

@@ -1,43 +1,43 @@
-import dynamic from "next/dynamic"
-import { filterPosts } from "src/libs/utils/notion"
+import type { GetStaticPaths, GetStaticProps } from "next"
 import { CONFIG } from "site.config"
-import { NextPageWithLayout } from "../types"
-import CustomError from "src/routes/Error"
-import { getRecordMap, getPosts } from "src/apis"
+import { getPosts, getRecordMap } from "src/apis"
 import MetaConfig from "src/components/MetaConfig"
-import { GetStaticProps } from "next"
-import { createQueryClient } from "src/libs/react-query"
-import { queryKey } from "src/constants/queryKey"
-import { dehydrate } from "@tanstack/react-query"
-import usePostQuery from "src/hooks/usePostQuery"
-import { FilterPostsOptions } from "src/libs/utils/notion/filterPosts"
+import { filterPosts } from "src/libs/utils/notion"
+import type { FilterPostsOptions } from "src/libs/utils/notion/filterPosts"
 import Detail from "src/routes/Detail"
+import type { NextPageWithLayout, PostDetail } from "../types"
 
 const filter: FilterPostsOptions = {
   acceptStatus: ["Public", "PublicOnDetail"],
   acceptType: ["Paper", "Post", "Page"],
 }
 
-export const getStaticPaths = async () => {
+type Params = {
+  slug: string
+}
+
+type Props = {
+  post: PostDetail
+}
+
+export const getStaticPaths: GetStaticPaths<Params> = async () => {
   const posts = await getPosts()
   const filteredPost = filterPosts(posts, filter)
 
   return {
     paths: filteredPost.map((row) => `/${row.slug}`),
-    fallback: true,
+    fallback: "blocking",
   }
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps<Props, Params> = async (
+  context
+) => {
   const slug = context.params?.slug
-  const queryClient = createQueryClient()
 
   const posts = await getPosts()
-  const feedPosts = filterPosts(posts)
-  await queryClient.prefetchQuery(queryKey.posts(), () => feedPosts)
-
   const detailPosts = filterPosts(posts, filter)
-  const postDetail = detailPosts.find((t: any) => t.slug === slug)
+  const postDetail = detailPosts.find((post) => post.slug === slug)
 
   if (!postDetail) {
     return {
@@ -46,27 +46,20 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 
   // Fetch recordMap for the detail page
-  const recordMap = await getRecordMap(postDetail?.id!)
-
-  await queryClient.prefetchQuery(queryKey.post(`${slug}`), () => ({
-    ...postDetail,
-    recordMap,
-  }))
+  const recordMap = await getRecordMap(postDetail.id)
 
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
-      slug,
+      post: {
+        ...postDetail,
+        recordMap,
+      },
     },
     revalidate: CONFIG.revalidateTime,
   }
 }
 
-const DetailPage: NextPageWithLayout = () => {
-  const post = usePostQuery()
-
-  if (!post) return <CustomError />
-
+const DetailPage: NextPageWithLayout<Props> = ({ post }) => {
   const image =
     post.thumbnail ??
     CONFIG.ogImageGenerateURL ??
@@ -86,7 +79,7 @@ const DetailPage: NextPageWithLayout = () => {
   return (
     <>
       <MetaConfig {...meta} />
-      <Detail />
+      <Detail data={post} />
     </>
   )
 }

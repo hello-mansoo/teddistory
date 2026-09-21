@@ -1,6 +1,5 @@
 import styled from "@emotion/styled"
-import React, { InputHTMLAttributes, ReactNode } from "react"
-import { Emoji } from "src/components/Emoji"
+import type { InputHTMLAttributes } from "react"
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {}
 
@@ -8,7 +7,7 @@ const SearchInput = ({ ...props }: Props) => {
   return (
     <StyledWrapper>
       <div className="top">
-        <span style={{ marginRight: '0.3rem' }}>🔎</span> Search
+        <span style={{ marginRight: "0.3rem" }}>🔎</span> Search
       </div>
       <input
         className="mid"

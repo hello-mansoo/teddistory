@@ -1,9 +1,9 @@
-import { CONFIG } from "site.config"
 import { getBlockValue, parsePageId } from "notion-utils"
+import { CONFIG } from "site.config"
 
 import getAllPageIds from "src/libs/utils/notion/getAllPageIds"
 import getPageProperties from "src/libs/utils/notion/getPageProperties"
-import { TPost, TPosts } from "src/types"
+import type { TPost, TPosts } from "src/types"
 import { notionClient } from "./client"
 import { hydrateNotionUsers } from "./hydrateNotionUsers"
 
@@ -11,7 +11,6 @@ import { hydrateNotionUsers } from "./hydrateNotionUsers"
  * @param {{ includePages: boolean }} - false: posts only / true: include pages
  */
 
-// TODO: react query를 사용해서 처음 불러온 뒤로는 해당데이터만 사용하도록 수정
 export const getPosts = async () => {
   const configuredPageId = CONFIG.notionConfig.pageId
   if (!configuredPageId) {

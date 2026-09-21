@@ -4,7 +4,7 @@ Allow: /
 Disallow: /resume.html
 
 # Host
-Host: https://blog.teddy-kim.com/
+Host: https://blog.teddy-kim.com
 
 # Sitemaps
 Sitemap: https://blog.teddy-kim.com/sitemap.xml

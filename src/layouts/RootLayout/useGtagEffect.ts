@@ -1,14 +1,14 @@
-import { useEffect } from "react"
 import { useRouter } from "next/router"
-import * as gtag from "src/libs/gtag"
+import { useEffect } from "react"
 import { CONFIG } from "site.config"
+import * as gtag from "src/libs/gtag"
 
 const useGtagEffect = () => {
   const router = useRouter()
   useEffect(() => {
     if (!(CONFIG.isProd && CONFIG?.googleAnalytics?.enable)) return
 
-    const handleRouteChange = (url: any) => {
+    const handleRouteChange = (url: string) => {
       gtag.pageview(url)
     }
     router.events.on("routeChangeComplete", handleRouteChange)

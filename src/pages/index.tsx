@@ -1,28 +1,27 @@
+import type { GetStaticProps } from "next"
+import MetaConfig from "src/components/MetaConfig"
+import { filterPosts } from "src/libs/utils/notion"
 import Feed from "src/routes/Feed"
 import { CONFIG } from "../../site.config"
-import { NextPageWithLayout } from "../types"
 import { getPosts } from "../apis"
-import MetaConfig from "src/components/MetaConfig"
-import { createQueryClient } from "src/libs/react-query"
-import { queryKey } from "src/constants/queryKey"
-import { GetStaticProps } from "next"
-import { dehydrate } from "@tanstack/react-query"
-import { filterPosts } from "src/libs/utils/notion"
+import type { NextPageWithLayout, TPosts } from "../types"
 
-export const getStaticProps: GetStaticProps = async () => {
-  const queryClient = createQueryClient()
+type Props = {
+  posts: TPosts
+}
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const posts = filterPosts(await getPosts())
-  await queryClient.prefetchQuery(queryKey.posts(), () => posts)
 
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
+      posts,
     },
     revalidate: CONFIG.revalidateTime,
   }
 }
 
-const FeedPage: NextPageWithLayout = () => {
+const FeedPage: NextPageWithLayout<Props> = ({ posts }) => {
   const meta = {
     title: CONFIG.blog.title,
     description: CONFIG.blog.description,
@@ -34,7 +33,7 @@ const FeedPage: NextPageWithLayout = () => {
   return (
     <>
       <MetaConfig {...meta} />
-      <Feed />
+      <Feed posts={posts} />
     </>
   )
 }

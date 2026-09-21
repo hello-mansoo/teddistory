@@ -1,4 +1,4 @@
-import { Block } from "notion-types"
+import type { Block } from "notion-types"
 import { getStableNotionFileSource } from "notion-utils"
 
 export const customMapImageUrl = (

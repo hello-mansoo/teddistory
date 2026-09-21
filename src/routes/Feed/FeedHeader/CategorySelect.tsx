@@ -1,16 +1,21 @@
-import useDropdown from "src/hooks/useDropdown"
+import styled from "@emotion/styled"
 import { useRouter } from "next/router"
-import React from "react"
 import { MdExpandMore } from "react-icons/md"
 import { DEFAULT_CATEGORY } from "src/constants"
-import styled from "@emotion/styled"
-import { useCategoriesQuery } from "src/hooks/useCategoriesQuery"
+import useDropdown from "src/hooks/useDropdown"
+import { getAllSelectItemsFromPosts } from "src/libs/utils/notion"
+import type { TPosts } from "src/types"
 
-type Props = {}
+type Props = {
+  posts: TPosts
+}
 
-const CategorySelect = () => {
+const CategorySelect = ({ posts }: Props) => {
   const router = useRouter()
-  const data = useCategoriesQuery()
+  const data = {
+    [DEFAULT_CATEGORY]: posts.length,
+    ...getAllSelectItemsFromPosts("category", posts),
+  }
   const [dropdownRef, opened, handleOpen] = useDropdown()
 
   const currentCategory = `${router.query.category || ``}` || DEFAULT_CATEGORY
@@ -24,20 +29,21 @@ const CategorySelect = () => {
     })
   }
   return (
-    <StyledWrapper>
-      <div ref={dropdownRef} className="wrapper" onClick={handleOpen}>
+    <StyledWrapper ref={dropdownRef}>
+      <button type="button" className="wrapper" onClick={handleOpen}>
         {currentCategory} Posts <MdExpandMore />
-      </div>
+      </button>
       {opened && (
         <div className="content">
-          {Object.keys(data).map((key, idx) => (
-            <div
+          {Object.keys(data).map((key) => (
+            <button
+              type="button"
               className="item"
-              key={idx}
+              key={key}
               onClick={() => handleOptionClick(key)}
             >
               {`${key} (${data[key]})`}
-            </div>
+            </button>
           ))}
         </div>
       )}
@@ -51,6 +57,8 @@ const StyledWrapper = styled.div`
   position: relative;
   > .wrapper {
     display: flex;
+    padding: 0;
+    border: 0;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     gap: 0.25rem;
@@ -58,6 +66,9 @@ const StyledWrapper = styled.div`
     font-size: 1.25rem;
     line-height: 1.75rem;
     font-weight: 700;
+    font-family: inherit;
+    color: inherit;
+    background: transparent;
     cursor: pointer;
   }
   > .content {
@@ -70,6 +81,9 @@ const StyledWrapper = styled.div`
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -1px rgba(0, 0, 0, 0.06);
     > .item {
+      display: block;
+      width: 100%;
+      border: 0;
       padding: 0.25rem;
       padding-left: 0.5rem;
       padding-right: 0.5rem;
@@ -77,6 +91,10 @@ const StyledWrapper = styled.div`
       font-size: 0.875rem;
       line-height: 1.25rem;
       white-space: nowrap;
+      font-family: inherit;
+      color: inherit;
+      text-align: left;
+      background: transparent;
       cursor: pointer;
 
       :hover {

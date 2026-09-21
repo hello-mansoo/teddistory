@@ -1,16 +1,13 @@
-import { CONFIG } from "site.config"
-import Image from "next/image"
-import React from "react"
 import styled from "@emotion/styled"
-
-type Props = {
-  className?: string
-}
+import Image from "next/image"
+import { CONFIG } from "site.config"
 
 const MobileProfileCard = () => {
   return (
     <StyledWrapper>
-      <div className="top"><span style={{ marginRight: '0.3rem' }}>🧸</span> Profile</div>
+      <div className="top">
+        <span style={{ marginRight: "0.3rem" }}>🧸</span> Profile
+      </div>
       <div className="mid">
         <div className="wrapper">
           <Image

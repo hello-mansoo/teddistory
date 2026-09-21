@@ -1,15 +1,16 @@
 import { ThemeProvider as _ThemeProvider } from "@emotion/react"
-import { Global } from "./Global"
 import { createTheme } from "src/styles"
+import type { Scheme } from "src/styles/theme"
+import { Global } from "./Global"
 
 type Props = {
-  scheme: string
+  scheme: Scheme
   children?: React.ReactNode
 }
 
 export const ThemeProvider = ({ scheme, children }: Props) => {
   const theme = createTheme({
-    scheme: scheme === "light" ? "light" : "dark",
+    scheme,
   })
 
   return (

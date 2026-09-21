@@ -1,4 +1,4 @@
-import Document, { Html, Head, Main, NextScript } from "next/document"
+import Document, { Head, Html, Main, NextScript } from "next/document"
 import { CONFIG } from "site.config"
 
 class MyDocument extends Document {
@@ -20,21 +20,17 @@ class MyDocument extends Document {
           ></link>
           {/* google search console */}
           {CONFIG.googleSearchConsole.enable === true && (
-            <>
-              <meta
-                name="google-site-verification"
-                content={CONFIG.googleSearchConsole.config.siteVerification}
-              />
-            </>
+            <meta
+              name="google-site-verification"
+              content={CONFIG.googleSearchConsole.config.siteVerification}
+            />
           )}
           {/* Naver Search Advisor */}
           {CONFIG.naverSearchAdvisor.enable === true && (
-            <>
-              <meta
-                name="naver-site-verification"
-                content={CONFIG.naverSearchAdvisor.config.siteVerification}
-              />
-            </>
+            <meta
+              name="naver-site-verification"
+              content={CONFIG.naverSearchAdvisor.config.siteVerification}
+            />
           )}
         </Head>
         <body>

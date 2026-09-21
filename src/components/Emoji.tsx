@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import type { ReactNode } from "react"
 
 type Props = {
   className?: string
@@ -6,9 +6,5 @@ type Props = {
 }
 
 export const Emoji = ({ className, children }: Props) => {
-  return (
-    <span className={className}>
-      {children}
-    </span>
-  )
+  return <span className={className}>{children}</span>
 }

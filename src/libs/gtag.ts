@@ -1,10 +1,20 @@
 import { CONFIG } from "site.config"
 export const GA_TRACKING_ID = CONFIG.googleAnalytics.config.measurementId
 
+type AnalyticsFunction = (
+  command: "config" | "event",
+  target: string,
+  parameters: Record<string, string | number>
+) => void
+
+const getAnalytics = () =>
+  (globalThis as typeof globalThis & { gtag?: AnalyticsFunction }).gtag
+
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
-export const pageview = (url: any) => {
-  if (typeof window !== "object") return
-  window.gtag("config", GA_TRACKING_ID, {
+export const pageview = (url: string) => {
+  const analytics = getAnalytics()
+  if (typeof window !== "object" || !analytics) return
+  analytics("config", GA_TRACKING_ID, {
     page_path: url,
   })
 }
@@ -16,13 +26,14 @@ export const event = ({
   label,
   value,
 }: {
-  action: any
-  category: any
-  label: any
-  value: any
+  action: string
+  category: string
+  label: string
+  value: number
 }) => {
-  if (typeof window !== "object") return
-  window.gtag("event", action, {
+  const analytics = getAnalytics()
+  if (typeof window !== "object" || !analytics) return
+  analytics("event", action, {
     event_category: category,
     event_label: label,
     value: value,

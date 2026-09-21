@@ -1,8 +1,7 @@
-import { CONFIG } from "site.config"
-import { useEffect } from "react"
 import styled from "@emotion/styled"
+import { useEffect } from "react"
+import { CONFIG } from "site.config"
 import useScheme from "src/hooks/useScheme"
-import { useRouter } from "next/router"
 
 //TODO: useRef?
 
@@ -12,7 +11,6 @@ type Props = {
 
 const Utterances = ({ issueTerm }: Props) => {
   const [scheme] = useScheme()
-  const router = useRouter()
 
   useEffect(() => {
     const theme = scheme === "light" ? "github-light" : "github-dark"
@@ -33,13 +31,11 @@ const Utterances = ({ issueTerm }: Props) => {
     return () => {
       anchor.innerHTML = ""
     }
-  }, [scheme, router])
+  }, [issueTerm, scheme])
   return (
-    <>
-      <StyledWrapper id="comments">
-        <div className="utterances-frame"></div>
-      </StyledWrapper>
-    </>
+    <StyledWrapper id="comments">
+      <div className="utterances-frame"></div>
+    </StyledWrapper>
   )
 }
 

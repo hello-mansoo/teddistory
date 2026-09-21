@@ -1,9 +1,6 @@
 import styled from "@emotion/styled"
-import React from "react"
 import { Emoji } from "src/components/Emoji"
 import useScheme from "src/hooks/useScheme"
-
-type Props = {}
 
 const ThemeToggle = () => {
   const [scheme, setScheme] = useScheme()
@@ -13,7 +10,11 @@ const ThemeToggle = () => {
   }
 
   return (
-    <StyledWrapper onClick={handleClick}>
+    <StyledWrapper
+      type="button"
+      aria-label={`${scheme === "light" ? "Dark" : "Light"} theme`}
+      onClick={handleClick}
+    >
       <Emoji>{scheme === "light" ? "☀️" : "🌙"}</Emoji>
     </StyledWrapper>
   )
@@ -21,6 +22,6 @@ const ThemeToggle = () => {
 
 export default ThemeToggle
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled.button`
   cursor: pointer;
 `

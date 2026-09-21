@@ -1,12 +1,13 @@
-import { NextPage } from "next"
-import { AppProps } from "next/app"
-import { ExtendedRecordMap } from "notion-types"
-import { ReactElement, ReactNode } from "react"
+import type { NextPage } from "next"
+import type { AppProps } from "next/app"
+import type { ExtendedRecordMap } from "notion-types"
+import type { ReactElement, ReactNode } from "react"
 
 // TODO: refactor types
-export type NextPageWithLayout<PageProps = {}> = NextPage<PageProps> & {
-  getLayout?: (page: ReactElement) => ReactNode
-}
+export type NextPageWithLayout<PageProps = Record<string, never>> =
+  NextPage<PageProps> & {
+    getLayout?: (page: ReactElement) => ReactNode
+  }
 
 export type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout

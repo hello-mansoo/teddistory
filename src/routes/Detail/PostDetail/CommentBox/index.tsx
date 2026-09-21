@@ -1,6 +1,6 @@
-import { TPost } from "src/types"
-import { CONFIG } from "site.config"
 import dynamic from "next/dynamic"
+import { CONFIG } from "site.config"
+import type { TPost } from "src/types"
 
 const UtterancesComponent = dynamic(
   () => {
@@ -8,13 +8,6 @@ const UtterancesComponent = dynamic(
   },
   { ssr: false }
 )
-const CusdisComponent = dynamic(
-  () => {
-    return import("./Cusdis")
-  },
-  { ssr: false }
-)
-
 type Props = {
   data: TPost
 }
@@ -23,9 +16,6 @@ const CommentBox = ({ data }: Props) => {
   return (
     <div>
       {CONFIG.utterances.enable && <UtterancesComponent issueTerm={data.id} />}
-      {CONFIG.cusdis.enable && (
-        <CusdisComponent id={data.id} slug={data.slug} title={data.title} />
-      )}
     </div>
   )
 }

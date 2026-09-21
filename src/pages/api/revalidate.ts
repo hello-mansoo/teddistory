@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next"
+import type { NextApiRequest, NextApiResponse } from "next"
 import { getPosts } from "../../apis"
 
 // for all path revalidate, https://<your-site.com>/api/revalidate?secret=<token>
@@ -25,7 +25,7 @@ export default async function handler(
     }
 
     res.json({ revalidated: true })
-  } catch (err) {
+  } catch (_err) {
     return res.status(500).send("Error revalidating")
   }
 }

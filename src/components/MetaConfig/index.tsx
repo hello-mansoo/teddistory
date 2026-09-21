@@ -1,5 +1,5 @@
-import { CONFIG } from "site.config"
 import Head from "next/head"
+import { CONFIG } from "site.config"
 
 export type MetaConfigProps = {
   title: string

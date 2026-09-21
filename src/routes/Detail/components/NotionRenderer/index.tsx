@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
-import { ExtendedRecordMap } from "notion-types"
+import type { ExtendedRecordMap } from "notion-types"
 import useScheme from "src/hooks/useScheme"
 import { customMapImageUrl } from "src/libs/utils/notion/customMapImageUrl"
 
@@ -14,8 +14,12 @@ import "prismjs/themes/prism-tomorrow.css"
 // used for rendering equations (optional)
 
 import "katex/dist/katex.min.css"
-import { FC } from "react"
 import styled from "@emotion/styled"
+import type { ComponentProps, FC } from "react"
+
+const NotionImage = (props: ComponentProps<typeof Image>) => (
+  <Image {...props} unoptimized />
+)
 
 const _NotionRenderer = dynamic(() =>
   import("react-notion-x").then((m) => m.NotionRenderer)
@@ -77,7 +81,7 @@ const Modal = dynamic(
 )
 
 const mapPageUrl = (id: string) => {
-  return "https://www.notion.so/" + id.replace(/-/g, "")
+  return `https://www.notion.so/${id.replace(/-/g, "")}`
 }
 
 type Props = {
@@ -97,7 +101,7 @@ const NotionRenderer: FC<Props> = ({ recordMap }) => {
           Equation,
           Modal,
           Pdf,
-          nextImage: Image,
+          nextImage: NotionImage,
           nextLink: Link,
         }}
         mapImageUrl={customMapImageUrl}

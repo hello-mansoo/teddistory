@@ -1,29 +1,33 @@
-import React, { ReactNode } from "react"
-import { ThemeProvider } from "./ThemeProvider"
-import useScheme from "src/hooks/useScheme"
-import Header from "./Header"
 import styled from "@emotion/styled"
-import Scripts from "src/layouts/RootLayout/Scripts"
-import useGtagEffect from "./useGtagEffect"
+import type { ReactNode } from "react"
 import { CONFIG } from "site.config"
+import useScheme, { SchemeProvider } from "src/hooks/useScheme"
+import Scripts from "src/layouts/RootLayout/Scripts"
+import Header from "./Header"
+import { ThemeProvider } from "./ThemeProvider"
+import useGtagEffect from "./useGtagEffect"
 
 type Props = {
   children: ReactNode
 }
 
-const RootLayout = ({ children }: Props) => {
+const RootLayoutContent = ({ children }: Props) => {
   const [scheme] = useScheme()
   useGtagEffect()
   return (
     <ThemeProvider scheme={scheme}>
       {CONFIG.isProd && <Scripts />}
-      {/* // TODO: replace react query */}
-      {/* {metaConfig.type !== "Paper" && <Header />} */}
       <Header fullWidth={false} />
       <StyledMain>{children}</StyledMain>
     </ThemeProvider>
   )
 }
+
+const RootLayout = ({ children }: Props) => (
+  <SchemeProvider>
+    <RootLayoutContent>{children}</RootLayoutContent>
+  </SchemeProvider>
+)
 
 export default RootLayout
 

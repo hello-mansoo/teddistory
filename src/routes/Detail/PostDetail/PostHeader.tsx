@@ -1,10 +1,9 @@
+import styled from "@emotion/styled"
+import Image from "next/image"
 import { CONFIG } from "site.config"
 import Tag from "src/components/Tag"
-import { TPost } from "src/types"
 import { formatDate } from "src/libs/utils"
-import Image from "next/image"
-import React from "react"
-import styled from "@emotion/styled"
+import type { TPost } from "src/types"
 
 type Props = {
   data: TPost
@@ -17,7 +16,7 @@ const PostHeader = ({ data }: Props) => {
       {data.type[0] !== "Paper" && (
         <nav>
           <div className="top">
-            {data.author && data.author[0] && data.author[0].name && (
+            {data.author?.[0]?.name && (
               <>
                 <div className="author">
                   <Image
@@ -27,6 +26,9 @@ const PostHeader = ({ data }: Props) => {
                     width={24}
                     height={24}
                     loading="eager"
+                    unoptimized={data.author[0].profile_photo?.startsWith(
+                      "http"
+                    )}
                   />
                   <div className="">{data.author[0].name}</div>
                 </div>
@@ -56,6 +58,8 @@ const PostHeader = ({ data }: Props) => {
                 css={{ objectFit: "cover" }}
                 fill
                 alt={data.title}
+                sizes="(max-width: 767px) 100vw, 672px"
+                unoptimized
               />
             </div>
           )}

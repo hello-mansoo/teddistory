@@ -1,11 +1,35 @@
-import { getBlockValue, getDateValue, getTextContent } from "notion-utils"
-import {
+import type {
   CollectionPropertySchemaMap,
+  Decoration,
   ExtendedRecordMap,
   User,
 } from "notion-types"
-import { notionClient } from "src/apis/notion-client/client"
+import { getBlockValue, getDateValue, getTextContent } from "notion-utils"
+import { fetchNotionUsersById } from "src/apis/notion-client/hydrateNotionUsers"
 import { customMapImageUrl } from "./customMapImageUrl"
+
+const getNotionFileUrl = (value: unknown): string | undefined => {
+  if (!Array.isArray(value)) return undefined
+
+  const url = value[0]?.[1]?.[0]?.[1]
+  return typeof url === "string" ? url : undefined
+}
+
+const getNotionUserIds = (value: unknown): string[] => {
+  if (!Array.isArray(value)) return []
+
+  return value.flatMap((decoration) => {
+    if (!Array.isArray(decoration) || !Array.isArray(decoration[1])) return []
+
+    return decoration[1].flatMap((annotation) =>
+      Array.isArray(annotation) &&
+      annotation[0] === "u" &&
+      typeof annotation[1] === "string"
+        ? [annotation[1]]
+        : []
+    )
+  })
+}
 
 async function getPageProperties(
   id: string,
@@ -17,30 +41,34 @@ async function getPageProperties(
   const block = getBlockValue(recordMap.block[id])
   if (!block) return null
 
-  const rawProperties = Object.entries(block.properties || [])
+  const rawProperties = Object.entries(
+    (block.properties ?? {}) as Record<string, Decoration[]>
+  )
   const excludeProperties = ["date", "select", "multi_select", "person", "file"]
-  const properties: any = {}
+  const properties: Record<string, unknown> = {}
   for (let i = 0; i < rawProperties.length; i++) {
-    const [key, val]: any = rawProperties[i]
+    const [key, val] = rawProperties[i]
     properties.id = id
     if (schema[key]?.type && !excludeProperties.includes(schema[key].type)) {
       properties[schema[key].name] = getTextContent(val)
     } else {
       switch (schema[key]?.type) {
         case "file": {
-          try {
-            const url: string = val[0][1][0][1]
+          const url = getNotionFileUrl(val)
+          if (url) {
             const newurl = customMapImageUrl(url, block)
             properties[schema[key].name] = newurl
-          } catch (error) {
+          } else {
             properties[schema[key].name] = undefined
           }
           break
         }
         case "date": {
-          const dateProperty: any = getDateValue(val)
-          delete dateProperty.type
-          properties[schema[key].name] = dateProperty
+          const dateProperty = getDateValue(val)
+          if (dateProperty) {
+            const { type: _type, ...date } = dateProperty
+            properties[schema[key].name] = date
+          }
           break
         }
         case "select": {
@@ -58,14 +86,7 @@ async function getPageProperties(
           break
         }
         case "person": {
-          const userIds = val.flatMap((decoration: any[]) =>
-            (decoration?.[1] ?? [])
-              .filter(
-                (annotation: unknown[]) =>
-                  annotation?.[0] === "u" && typeof annotation?.[1] === "string"
-              )
-              .map((annotation: unknown[]) => annotation[1] as string)
-          )
+          const userIds = getNotionUserIds(val)
 
           const users = await Promise.all(
             userIds.map(async (userId: string) => {
@@ -74,10 +95,10 @@ async function getPageProperties(
                 | undefined
 
               if (!user) {
-                const res = await notionClient.getUsers([userId])
-                user = getBlockValue(
-                  (res as any)?.recordMapWithRoles?.notion_user?.[userId]
-                ) as NotionUser | undefined
+                const usersById = await fetchNotionUsersById([userId])
+                user = getBlockValue(usersById[userId]) as
+                  | NotionUser
+                  | undefined
               }
 
               return {

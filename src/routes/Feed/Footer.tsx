@@ -1,6 +1,5 @@
-import { CONFIG } from "site.config"
-import React from "react"
 import styled from "@emotion/styled"
+import { CONFIG } from "site.config"
 
 const d = new Date()
 const y = d.getFullYear()

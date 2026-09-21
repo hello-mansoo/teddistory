@@ -1,10 +1,7 @@
 import styled from "@emotion/styled"
 import { useRouter } from "next/router"
-import React from "react"
 
 type TOrder = "asc" | "desc"
-
-type Props = {}
 
 const OrderButtons = () => {
   const router = useRouter()
@@ -21,18 +18,20 @@ const OrderButtons = () => {
   }
   return (
     <StyledWrapper>
-      <a
+      <button
+        type="button"
         data-active={currentOrder === "desc"}
         onClick={() => handleClickOrderBy("desc")}
       >
         Desc
-      </a>
-      <a
+      </button>
+      <button
+        type="button"
         data-active={currentOrder === "asc"}
         onClick={() => handleClickOrderBy("asc")}
       >
         Asc
-      </a>
+      </button>
     </StyledWrapper>
   )
 }
@@ -44,7 +43,11 @@ const StyledWrapper = styled.div`
   gap: 0.5rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  a {
+  button {
+    padding: 0;
+    border: 0;
+    font: inherit;
+    background: transparent;
     cursor: pointer;
     color: ${({ theme }) => theme.colors.gray10};
 

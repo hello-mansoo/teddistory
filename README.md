@@ -26,7 +26,7 @@ Next.js static blog using Notion as a Content Management System (CMS). Supports 
 **🤖 Customisable and Supports various plugin through CONFIG**
 
 - Your profile information can be updated through Config. (`site.config.js`)
-- Plugins support includes, Google Analytics, Search Console and also Commenting using Github Issues(Utterances) or Cusdis.
+- Plugins support includes Google Analytics, Search Console and commenting using GitHub Issues (Utterances).
 
 ## Getting Started
 

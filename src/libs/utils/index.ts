@@ -1,6 +1,10 @@
-export function formatDate(date: any, local: any) {
+export function formatDate(date: string | number, local: Intl.LocalesArgument) {
   const d = new Date(date)
-  const options: any = { year: 'numeric', month: 'short', day: 'numeric' }
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }
   const res = d.toLocaleDateString(local, options)
   return res
 }

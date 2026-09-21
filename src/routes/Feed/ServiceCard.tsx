@@ -1,12 +1,11 @@
-import { CONFIG } from "site.config"
-import React from "react"
-import { AiFillCodeSandboxCircle } from "react-icons/ai"
 import styled from "@emotion/styled"
+import { AiFillCodeSandboxCircle } from "react-icons/ai"
+import { CONFIG } from "site.config"
 import { Emoji } from "src/components/Emoji"
 
 type ProjectType = {
   name: string
-  href: string 
+  href: string
 }
 
 const ServiceCard = () => {
@@ -20,9 +19,9 @@ const ServiceCard = () => {
         <Emoji>🌟</Emoji> Service
       </StyledTitle>
       <StyledWrapper>
-        {projects?.map((project, idx) => (
+        {projects?.map((project) => (
           <a
-            key={idx}
+            key={`${project.name}:${project.href}`}
             href={`${project.href}`}
             rel="noreferrer"
             target="_blank"

@@ -1,28 +1,44 @@
-import { useEffect } from "react"
 import mermaid from "mermaid"
+import { useEffect } from "react"
 
 const useMermaidEffect = () => {
   useEffect(() => {
     mermaid.initialize({
-      startOnLoad: true,
+      startOnLoad: false,
+      securityLevel: "strict",
     })
-    if (!document) return
-    const elements: HTMLCollectionOf<Element> =
-      document.getElementsByClassName("language-mermaid")
-    if (!elements) return
 
-    for (let i = 0; i < elements.length; i++) {
-      mermaid.render(
-        "mermaid" + i,
-        elements[i].textContent || "",
-        // (svgCode: string) => {
-        //   elements[i].innerHTML = svgCode
-        // }
+    let renderScheduled = false
+    const renderDiagrams = async () => {
+      const nodes = Array.from(
+        document.querySelectorAll<HTMLElement>(
+          ".language-mermaid:not([data-processed])"
+        )
       )
-    }
-  }, [])
+      if (!nodes.length) return
 
-  return
+      try {
+        await mermaid.run({ nodes })
+      } catch (error) {
+        console.error("Failed to render Mermaid diagram", error)
+      }
+    }
+
+    const scheduleRender = () => {
+      if (renderScheduled) return
+      renderScheduled = true
+      queueMicrotask(() => {
+        renderScheduled = false
+        void renderDiagrams()
+      })
+    }
+
+    const observer = new MutationObserver(scheduleRender)
+    observer.observe(document.body, { childList: true, subtree: true })
+    scheduleRender()
+
+    return () => observer.disconnect()
+  }, [])
 }
 
 export default useMermaidEffect

@@ -1,18 +1,18 @@
+import styled from "@emotion/styled"
+import Image from "next/image"
 import Link from "next/link"
 import { CONFIG } from "site.config"
 import { formatDate } from "src/libs/utils"
-import Tag from "../../../components/Tag"
-import { TPost } from "../../../types"
-import Image from "next/image"
 import Category from "../../../components/Category"
-import styled from "@emotion/styled"
+import Tag from "../../../components/Tag"
+import type { TPost } from "../../../types"
 
 type Props = {
   data: TPost
 }
 
 const PostCard = ({ data }: Props) => {
-  const category = (data.category && data.category?.[0]) || undefined
+  const category = data.category?.[0] || undefined
 
   return (
     <StyledWrapper href={`/${data.slug}`}>
@@ -28,6 +28,8 @@ const PostCard = ({ data }: Props) => {
               src={data.thumbnail}
               fill
               alt={data.title}
+              sizes="(max-width: 767px) 100vw, (max-width: 1023px) 66vw, 560px"
+              unoptimized
               css={{ objectFit: "cover" }}
             />
           </div>
@@ -48,10 +50,9 @@ const PostCard = ({ data }: Props) => {
             <p>{data.summary}</p>
           </div>
           <div className="tags">
-            {data.tags &&
-              data.tags.map((tag: string, idx: number) => (
-                <Tag key={idx}>{tag}</Tag>
-              ))}
+            {data.tags?.map((tag: string) => (
+              <Tag key={tag}>{tag}</Tag>
+            ))}
           </div>
         </div>
       </article>

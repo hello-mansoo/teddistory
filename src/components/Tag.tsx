@@ -1,6 +1,5 @@
 import styled from "@emotion/styled"
 import { useRouter } from "next/router"
-import React from "react"
 
 type Props = {
   children: string

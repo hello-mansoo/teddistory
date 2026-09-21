@@ -1,5 +1,5 @@
-import { TPosts, TPostStatus, TPostType, TPostDraft } from "src/types"
 import { CONFIG } from "site.config"
+import type { TPostDraft, TPostStatus, TPosts, TPostType } from "src/types"
 
 export type FilterPostsOptions = {
   acceptStatus?: TPostStatus[]
@@ -21,7 +21,11 @@ export function filterPosts(
   posts: TPosts,
   options: FilterPostsOptions = initialOption
 ) {
-  const { acceptStatus = ["Public"], acceptType = ["Post"], acceptDraft = "No" } = options
+  const {
+    acceptStatus = ["Public"],
+    acceptType = ["Post"],
+    acceptDraft = "No",
+  } = options
   const filteredPosts = posts
     // filter data
     .filter((post) => {

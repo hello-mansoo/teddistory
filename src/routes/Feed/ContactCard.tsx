@@ -1,17 +1,18 @@
-import { CONFIG } from "site.config"
-import React from "react"
-import {
-  AiOutlineInstagram,
-  AiOutlineGithub,
-  AiOutlineMail,
-  AiFillLinkedin,
-} from "react-icons/ai"
 import styled from "@emotion/styled"
+import {
+  AiFillLinkedin,
+  AiOutlineGithub,
+  AiOutlineInstagram,
+  AiOutlineMail,
+} from "react-icons/ai"
+import { CONFIG } from "site.config"
 
 const ContactCard = () => {
   return (
     <>
-      <StyledTitle><span style={{ marginRight: '0.3rem' }}>💬</span> Contact</StyledTitle>
+      <StyledTitle>
+        <span style={{ marginRight: "0.3rem" }}>💬</span> Contact
+      </StyledTitle>
       <StyledWrapper>
         {CONFIG.profile.linkedin && (
           <a

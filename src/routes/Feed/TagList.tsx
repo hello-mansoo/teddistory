@@ -1,17 +1,19 @@
 import styled from "@emotion/styled"
 import { useRouter } from "next/router"
-import React from "react"
 import { Emoji } from "src/components/Emoji"
-import { useTagsQuery } from "src/hooks/useTagsQuery"
+import { getAllSelectItemsFromPosts } from "src/libs/utils/notion"
+import type { TPosts } from "src/types"
 
-type Props = {}
+type Props = {
+  posts: TPosts
+}
 
-const TagList = () => {
+const TagList = ({ posts }: Props) => {
   const router = useRouter()
   const currentTag = router.query.tag || undefined
-  const data = useTagsQuery()
+  const data = getAllSelectItemsFromPosts("tags", posts)
 
-  const handleClickTag = (value: any) => {
+  const handleClickTag = (value: string) => {
     // delete
     if (currentTag === value) {
       router.push({
@@ -39,13 +41,14 @@ const TagList = () => {
       </div>
       <div className="list">
         {Object.keys(data).map((key) => (
-          <a
+          <button
+            type="button"
             key={key}
             data-active={key === currentTag}
             onClick={() => handleClickTag(key)}
           >
             {key}
-          </a>
+          </button>
         ))}
       </div>
     </StyledWrapper>
@@ -82,7 +85,7 @@ const StyledWrapper = styled.div`
       display: block;
     }
 
-    a {
+    button {
       display: block;
       padding: 0.25rem;
       padding-left: 1rem;
@@ -94,6 +97,9 @@ const StyledWrapper = styled.div`
       line-height: 1.25rem;
       color: ${({ theme }) => theme.colors.gray10};
       flex-shrink: 0;
+      border: 0;
+      font-family: inherit;
+      background-color: transparent;
       cursor: pointer;
 
       :hover {

@@ -1,5 +1,5 @@
+import type { ExtendedRecordMap, ID } from "notion-types"
 import { idToUuid } from "notion-utils"
-import { ExtendedRecordMap, ID } from "notion-types"
 
 export default function getAllPageIds(
   response: ExtendedRecordMap,
@@ -24,10 +24,12 @@ export default function getAllPageIds(
     const pageSet = new Set<ID>()
     collections.forEach((views) => {
       Object.values(views).forEach((view) => {
-        view?.blockIds?.forEach((id) => pageSet.add(id))
-        view?.collection_group_results?.blockIds?.forEach((id) =>
+        view?.blockIds?.forEach((id) => {
           pageSet.add(id)
-        )
+        })
+        view?.collection_group_results?.blockIds?.forEach((id) => {
+          pageSet.add(id)
+        })
       })
     })
     pageIds = [...pageSet]
