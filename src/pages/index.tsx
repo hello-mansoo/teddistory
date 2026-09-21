@@ -3,13 +3,14 @@ import { CONFIG } from "../../site.config"
 import { NextPageWithLayout } from "../types"
 import { getPosts } from "../apis"
 import MetaConfig from "src/components/MetaConfig"
-import { queryClient } from "src/libs/react-query"
+import { createQueryClient } from "src/libs/react-query"
 import { queryKey } from "src/constants/queryKey"
 import { GetStaticProps } from "next"
 import { dehydrate } from "@tanstack/react-query"
 import { filterPosts } from "src/libs/utils/notion"
 
 export const getStaticProps: GetStaticProps = async () => {
+  const queryClient = createQueryClient()
   const posts = filterPosts(await getPosts())
   await queryClient.prefetchQuery(queryKey.posts(), () => posts)
 
@@ -27,7 +28,7 @@ const FeedPage: NextPageWithLayout = () => {
     description: CONFIG.blog.description,
     type: "website",
     url: CONFIG.link,
-    image: CONFIG.ogImageGenerateURL
+    image: CONFIG.ogImageGenerateURL,
   }
 
   return (

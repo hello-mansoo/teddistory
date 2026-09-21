@@ -1,30 +1,44 @@
-import { Block } from 'notion-types'
+import { Block } from "notion-types"
+import { getStableNotionFileSource } from "notion-utils"
 
-export const customMapImageUrl = (url: string, block: Block): string => {
+export const customMapImageUrl = (
+  url: string | undefined,
+  block: Block
+): string | undefined => {
   if (!url) {
-    throw new Error("URL can't be empty")
+    return undefined
   }
 
-  if (url.startsWith('data:')) {
+  if (url.startsWith("data:")) {
     return url
   }
 
   // more recent versions of notion don't proxy unsplash images
-  if (url.startsWith('https://images.unsplash.com')) {
+  if (url.startsWith("https://images.unsplash.com")) {
     return url
   }
+
+  if (url.startsWith("/images")) {
+    return `https://www.notion.so${url}`
+  }
+
+  const stableNotionUrl = getStableNotionFileSource(url)
+  if (!stableNotionUrl) {
+    return url
+  }
+  url = stableNotionUrl
 
   try {
     const u = new URL(url)
 
     if (
-      u.pathname.startsWith('/secure.notion-static.com') &&
-      u.hostname.endsWith('.amazonaws.com')
+      u.pathname.startsWith("/secure.notion-static.com") &&
+      u.hostname.endsWith(".amazonaws.com")
     ) {
       if (
-        u.searchParams.has('X-Amz-Credential') &&
-        u.searchParams.has('X-Amz-Signature') &&
-        u.searchParams.has('X-Amz-Algorithm')
+        u.searchParams.has("X-Amz-Credential") &&
+        u.searchParams.has("X-Amz-Signature") &&
+        u.searchParams.has("X-Amz-Algorithm")
       ) {
         // if the URL is already signed, then use it as-is
         url = u.origin + u.pathname
@@ -34,22 +48,18 @@ export const customMapImageUrl = (url: string, block: Block): string => {
     // ignore invalid urls
   }
 
-  if (url.startsWith('/images')) {
-    url = `https://www.notion.so${url}`
-  }
-
   url = `https://www.notion.so${
-    url.startsWith('/image') ? url : `/image/${encodeURIComponent(url)}`
+    url.startsWith("/image") ? url : `/image/${encodeURIComponent(url)}`
   }`
 
   const notionImageUrlV2 = new URL(url)
-  let table = block.parent_table === 'space' ? 'block' : block.parent_table
-  if (table === 'collection' || table === 'team') {
-    table = 'block'
+  let table = block.parent_table === "space" ? "block" : block.parent_table
+  if (table === "collection" || table === "team") {
+    table = "block"
   }
-  notionImageUrlV2.searchParams.set('table', table)
-  notionImageUrlV2.searchParams.set('id', block.id)
-  notionImageUrlV2.searchParams.set('cache', 'v2')
+  notionImageUrlV2.searchParams.set("table", table)
+  notionImageUrlV2.searchParams.set("id", block.id)
+  notionImageUrlV2.searchParams.set("cache", "v2")
 
   url = notionImageUrlV2.toString()
 

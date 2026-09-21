@@ -1,15 +1,23 @@
-import { getTextContent, getDateValue } from "notion-utils"
-import { NotionAPI } from "notion-client"
-import { BlockMap, CollectionPropertySchemaMap } from "notion-types"
+import { getBlockValue, getDateValue, getTextContent } from "notion-utils"
+import {
+  CollectionPropertySchemaMap,
+  ExtendedRecordMap,
+  User,
+} from "notion-types"
+import { notionClient } from "src/apis/notion-client/client"
 import { customMapImageUrl } from "./customMapImageUrl"
 
 async function getPageProperties(
   id: string,
-  block: BlockMap,
+  recordMap: ExtendedRecordMap,
   schema: CollectionPropertySchemaMap
 ) {
-  const api = new NotionAPI()
-  const rawProperties = Object.entries(block?.[id]?.value?.properties || [])
+  type NotionUser = User & { name?: string }
+
+  const block = getBlockValue(recordMap.block[id])
+  if (!block) return null
+
+  const rawProperties = Object.entries(block.properties || [])
   const excludeProperties = ["date", "select", "multi_select", "person", "file"]
   const properties: any = {}
   for (let i = 0; i < rawProperties.length; i++) {
@@ -21,9 +29,8 @@ async function getPageProperties(
       switch (schema[key]?.type) {
         case "file": {
           try {
-            const Block = block?.[id].value
             const url: string = val[0][1][0][1]
-            const newurl = customMapImageUrl(url, Block)
+            const newurl = customMapImageUrl(url, block)
             properties[schema[key].name] = newurl
           } catch (error) {
             properties[schema[key].name] = undefined
@@ -51,26 +58,40 @@ async function getPageProperties(
           break
         }
         case "person": {
-          const rawUsers = val.flat()
+          const userIds = val.flatMap((decoration: any[]) =>
+            (decoration?.[1] ?? [])
+              .filter(
+                (annotation: unknown[]) =>
+                  annotation?.[0] === "u" && typeof annotation?.[1] === "string"
+              )
+              .map((annotation: unknown[]) => annotation[1] as string)
+          )
 
-          const users = []
-          for (let i = 0; i < rawUsers.length; i++) {
-            if (rawUsers[i][0][1]) {
-              const userId = rawUsers[i][0]
-              const res: any = await api.getUsers(userId)
-              const resValue =
-                res?.recordMapWithRoles?.notion_user?.[userId[1]]?.value
-              const user = {
-                id: resValue?.id,
-                name:
-                  resValue?.name ||
-                  `${resValue?.family_name}${resValue?.given_name}` ||
-                  undefined,
-                profile_photo: resValue?.profile_photo || null,
+          const users = await Promise.all(
+            userIds.map(async (userId: string) => {
+              let user = getBlockValue(recordMap.notion_user?.[userId]) as
+                | NotionUser
+                | undefined
+
+              if (!user) {
+                const res = await notionClient.getUsers([userId])
+                user = getBlockValue(
+                  (res as any)?.recordMapWithRoles?.notion_user?.[userId]
+                ) as NotionUser | undefined
               }
-              users.push(user)
-            }
-          }
+
+              return {
+                id: user?.id,
+                name:
+                  user?.name ||
+                  [user?.family_name, user?.given_name]
+                    .filter(Boolean)
+                    .join(" ") ||
+                  undefined,
+                profile_photo: user?.profile_photo || null,
+              }
+            })
+          )
           properties[schema[key].name] = users
           break
         }

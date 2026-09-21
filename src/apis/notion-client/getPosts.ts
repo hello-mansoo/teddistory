@@ -1,10 +1,11 @@
 import { CONFIG } from "site.config"
-import { NotionAPI } from "notion-client"
-import { idToUuid } from "notion-utils"
+import { getBlockValue, parsePageId } from "notion-utils"
 
 import getAllPageIds from "src/libs/utils/notion/getAllPageIds"
 import getPageProperties from "src/libs/utils/notion/getPageProperties"
-import { TPosts } from "src/types"
+import { TPost, TPosts } from "src/types"
+import { notionClient } from "./client"
+import { hydrateNotionUsers } from "./hydrateNotionUsers"
 
 /**
  * @param {{ includePages: boolean }} - false: posts only / true: include pages
@@ -12,48 +13,68 @@ import { TPosts } from "src/types"
 
 // TODO: react query를 사용해서 처음 불러온 뒤로는 해당데이터만 사용하도록 수정
 export const getPosts = async () => {
-  let id = CONFIG.notionConfig.pageId as string
-  const api = new NotionAPI()
+  const configuredPageId = CONFIG.notionConfig.pageId
+  if (!configuredPageId) {
+    throw new Error("NOTION_PAGE_ID is required")
+  }
 
-  const response = await api.getPage(id)
-  id = idToUuid(id)
-  const collection = Object.values(response.collection)[0]?.value
-  const block = response.block
+  const id = parsePageId(configuredPageId)
+  if (!id) {
+    throw new Error("NOTION_PAGE_ID is not a valid Notion page ID or URL")
+  }
+
+  const response = await notionClient.getPage(configuredPageId, {
+    throwOnCollectionErrors: true,
+  })
+  await hydrateNotionUsers(response)
+  const collection = getBlockValue(Object.values(response.collection)[0])
   const schema = collection?.schema
-
-  const rawMetadata = block[id].value
+  const rawMetadata = getBlockValue(response.block[id])
 
   // Check Type
   if (
     rawMetadata?.type !== "collection_view_page" &&
     rawMetadata?.type !== "collection_view"
   ) {
-    return []
-  } else {
-    // Construct Data
-    const pageIds = getAllPageIds(response)
-    const data = []
-    for (let i = 0; i < pageIds.length; i++) {
-      const id = pageIds[i]
-      const properties = (await getPageProperties(id, block, schema)) || null
-      // Add fullwidth, createdtime to properties
-      properties.createdTime = new Date(
-        block[id].value?.created_time
-      ).toString()
-      properties.fullWidth =
-        (block[id].value?.format as any)?.page_full_width ?? false
-
-      data.push(properties)
-    }
-
-    // Sort by date
-    data.sort((a: any, b: any) => {
-      const dateA: any = new Date(a?.date?.start_date || a.createdTime)
-      const dateB: any = new Date(b?.date?.start_date || b.createdTime)
-      return dateB - dateA
-    })
-
-    const posts = data as TPosts
-    return posts
+    throw new Error(
+      `NOTION_PAGE_ID must point to a public Notion database (received ${
+        rawMetadata?.type ?? "no root block"
+      })`
+    )
   }
+
+  if (!schema) {
+    throw new Error("The configured Notion database schema could not be loaded")
+  }
+
+  // Construct Data
+  const pageIds = getAllPageIds(response)
+  const data = await Promise.all(
+    pageIds.map(async (pageId) => {
+      const block = getBlockValue(response.block[pageId])
+      if (!block) return null
+
+      const properties = await getPageProperties(pageId, response, schema)
+      if (!properties) return null
+
+      // Add fullwidth, createdtime to properties
+      properties.createdTime = new Date(block.created_time).toString()
+      properties.fullWidth =
+        (block.format as { page_full_width?: boolean } | undefined)
+          ?.page_full_width ?? false
+
+      return properties as TPost
+    })
+  )
+
+  const posts = data.filter((post): post is TPost => post !== null)
+
+  // Sort by date
+  posts.sort((a, b) => {
+    const dateA = new Date(a.date?.start_date || a.createdTime).getTime()
+    const dateB = new Date(b.date?.start_date || b.createdTime).getTime()
+    return dateB - dateA
+  })
+
+  return posts as TPosts
 }

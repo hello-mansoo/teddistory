@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    // Notion blocks server-side image optimizer requests, while browser requests
+    // continue to work. Keep Notion assets unoptimized so they do not disappear
+    // when Vercel's previously cached optimized images expire.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',

@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ExtendedRecordMap } from "notion-types"
 import useScheme from "src/hooks/useScheme"
+import { customMapImageUrl } from "src/libs/utils/notion/customMapImageUrl"
 
 // core styles shared by all of react-notion-x (required)
 import "react-notion-x/src/styles.css"
@@ -99,6 +100,7 @@ const NotionRenderer: FC<Props> = ({ recordMap }) => {
           nextImage: Image,
           nextLink: Link,
         }}
+        mapImageUrl={customMapImageUrl}
         mapPageUrl={mapPageUrl}
       />
     </StyledWrapper>
@@ -118,8 +120,8 @@ const StyledWrapper = styled.div`
     .notion-row {
       .notion-column {
         // @media (max-width: 767px) {
-          padding-top: 3px;
-          padding-bottom: 3px;
+        padding-top: 3px;
+        padding-bottom: 3px;
         // }
       }
     }
@@ -149,12 +151,12 @@ const StyledWrapper = styled.div`
 
     .notion-asset-wrapper {
       // @media (max-width: 767px) {
-        margin: 0;
+      margin: 0;
       // }
     }
 
     .notion-table-of-contents-item-body {
-      display: block!important;
+      display: block !important;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;

@@ -11,6 +11,7 @@
 # next.js
 /.next/
 /out/
+*.tsbuildinfo
 
 # production
 /build
@@ -35,5 +36,6 @@ yarn-error.log*
 .vercel
 # public/robots.txt
 # public/sitemap.xml
+/public/sitemap-*.xml
 
 /.firebase
