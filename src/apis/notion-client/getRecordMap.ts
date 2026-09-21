@@ -1,5 +1,6 @@
 import { getBlockValue } from "notion-utils"
 import { notionClient } from "./client"
+import { compactRecordMap } from "./compactRecordMap"
 import { hydrateNotionUsers } from "./hydrateNotionUsers"
 
 export const getRecordMap = async (pageId: string) => {
@@ -28,5 +29,5 @@ export const getRecordMap = async (pageId: string) => {
     }
   }
 
-  return recordMap
+  return compactRecordMap(recordMap, pageId)
 }

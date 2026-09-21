@@ -116,6 +116,14 @@ test("Notion 본문과 Mermaid 12 다이어그램을 렌더링한다", async ({ 
 
   const diagram = page.locator('.language-mermaid[data-processed="true"] svg')
   await expect(diagram).toBeVisible({ timeout: 15_000 })
+
+  await page.goto("/archive")
+  const fileLinks = page.locator(".notion-file a")
+  expect(await fileLinks.count()).toBeGreaterThan(0)
+  await expect(fileLinks.first()).toHaveAttribute(
+    "href",
+    /^https:\/\/file\.notion\.com\//
+  )
   expect(pageErrors).toEqual([])
 })
 

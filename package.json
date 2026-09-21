@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next-sitemap --config next-sitemap.config.mjs",
+    "build": "next build && next-sitemap --config next-sitemap.config.mjs && node scripts/check-page-data.mjs",
     "start": "next start",
     "check": "biome check .",
     "check:fix": "biome check . --write",
